@@ -191,47 +191,58 @@ h1, h2 { text-wrap: balance; }
 .closing .lede { max-width: 30em; }
 .closing .fine { max-width: 34em; line-height: 1.6; }
 
-/* On a phone (with JavaScript) the hero's phones give way to the story: one phone pins under the header
-   and scrolling walks through the app, Tonight to the map, with a caption above it. The features are told
-   by the story, so they go; the values and the closing stay, in words split by hairlines. */
+/* With JavaScript the hero's phones and the feature sections give way to the story: one phone pins under
+   the header and scrolling walks through the app, Tonight to the map. On a phone the caption sits above it;
+   wider, the phone glides from under the hero to the right and the words run beside it. Without
+   JavaScript the hero's phones and the features show as before. */
 .story { display: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
+.js .stage, .js .features .feature { display: none; }
+.js .features { gap: 0; padding-top: 0; }
+.js .story { display: block; position: relative; height: calc(100svh + 5.5 * 80svh); margin-top: 8px; }
+.story-pin { position: sticky; top: var(--header-h, 68px); height: calc(100svh - var(--header-h, 68px)); display: flex; align-items: center; }
+.story-caption { opacity: 0; flex: none; display: flex; flex-direction: column; }
+.story-caption h2 { margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+.story-caption p { margin: 0; color: var(--muted); text-wrap: balance; }
+.story-phone { position: relative; flex: none; }
+.story-phone .phone { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
+
+.story .view { position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; }
+.story .view.on { opacity: 1; }
+.story .cl { transition: opacity .4s ease, transform .4s ease; }
+.story .cl.off { opacity: 0; transform: scale(.6); }
+.story .zoomed { position: absolute; inset: 0; transform-origin: 0 0; }
+.story [data-view="map"], .story [data-view="outdoors"] { -webkit-mask-image: linear-gradient(to bottom, transparent 62px, #000 90px); mask-image: linear-gradient(to bottom, transparent 62px, #000 90px); }
+/* The Journal's page scrolls under the top bar, fading out at its edge. */
+.story .scroller { position: absolute; top: 84px; left: 0; right: 0; bottom: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18px); mask-image: linear-gradient(to bottom, transparent, #000 18px); }
+.story .scroller .body { top: 12px; }
+.story .days { display: flex; flex-direction: column; gap: 12px; }
+.story [data-moment] { transition: opacity .35s ease; }
+.story .field .placeholder { color: var(--muted); }
+.story .cards { display: flex; flex-direction: column; gap: 9px; }
+.story .cards .card { animation: card-in .35s ease both; }
+.story .tab.on, .story .round.on { background: var(--soft-yellow); color: var(--link); }
+@keyframes card-in { from { opacity: 0; transform: translateY(-8px); } }
+@media (prefers-reduced-motion: reduce) {
+  .story .view, .story .cl, .story [data-moment] { transition: none; }
+  .story .cards .card { animation: none; }
+}
+
+/* Wider: the words on the left, the phone on the right. */
+@media (min-width: 601px) {
+  .story-pin { justify-content: center; gap: clamp(48px, 8vw, 120px); max-width: 1100px; margin: 0 auto; padding: 24px; }
+  .story-caption { width: min(440px, 42vw); gap: 18px; }
+  .story-caption h2 { font-size: clamp(36px, 4.2vw, 54px); line-height: 1.08; }
+  .story-caption p { font-size: clamp(17px, 1.6vw, 21px); line-height: 1.55; max-width: 26em; }
+}
+
+/* On a phone: the caption above the phone; the values and the closing in words. */
 @media (max-width: 600px) {
-  .js .stage, .js .features .feature { display: none; }
-  .js .features { gap: 0; padding-top: 0; }
-
-  .js .story { display: block; position: relative; height: calc(100svh + 5.5 * 80svh); margin-top: 8px; }
-  .story-pin {
-    position: sticky; top: var(--header-h, 68px); height: calc(100svh - var(--header-h, 68px));
-    display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 24px 16px;
-  }
-  .story-caption { opacity: 0; width: 100%; max-width: 340px; height: 112px; flex: none; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; text-align: center; }
-  .story-caption h2 { margin: 0; font-size: 26px; line-height: 1.15; letter-spacing: -.01em; text-wrap: balance; }
-  .story-caption p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--muted); text-wrap: balance; }
-  .story-phone { position: relative; flex: none; }
-  .story-phone .phone { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
-
-  .story .view { position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; }
-  .story .view.on { opacity: 1; }
-  .story .cl { transition: opacity .4s ease, transform .4s ease; }
-  .story .cl.off { opacity: 0; transform: scale(.6); }
-  .story .zoomed { position: absolute; inset: 0; transform-origin: 0 0; }
-  .story [data-view="map"], .story [data-view="outdoors"] { -webkit-mask-image: linear-gradient(to bottom, transparent 62px, #000 90px); mask-image: linear-gradient(to bottom, transparent 62px, #000 90px); }
-  /* The Journal's page scrolls under the top bar, fading out at its edge. */
-  .story .scroller { position: absolute; top: 84px; left: 0; right: 0; bottom: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18px); mask-image: linear-gradient(to bottom, transparent, #000 18px); }
-  .story .scroller .body { top: 12px; }
-  .story .days { display: flex; flex-direction: column; gap: 12px; }
-  .story [data-moment] { transition: opacity .35s ease; }
-  .story .field .placeholder { color: var(--muted); }
-  .story .cards { display: flex; flex-direction: column; gap: 9px; }
-  .story .cards .card { animation: card-in .35s ease both; }
-  .story .tab.on, .story .round.on { background: var(--soft-yellow); color: var(--link); }
-  @keyframes card-in { from { opacity: 0; transform: translateY(-8px); } }
-  @media (prefers-reduced-motion: reduce) {
-    .story .view, .story .cl, .story [data-moment] { transition: none; }
-    .story .cards .card { animation: none; }
-  }
+  .story-pin { flex-direction: column; gap: 12px; padding: 8px 24px 16px; }
+  .story-caption { width: 100%; max-width: 340px; height: 112px; justify-content: flex-end; align-items: center; gap: 6px; text-align: center; }
+  .story-caption h2 { font-size: 26px; line-height: 1.15; }
+  .story-caption p { font-size: 15px; line-height: 1.5; }
 
   .values { display: flex; flex-direction: column; gap: 32px; padding: 0 8px 0 20px; margin-block: 40px 88px; }
   .value { display: grid; grid-template-columns: 24px 1fr; gap: 6px 18px; padding: 0; border: 0; border-radius: 0; background: none; }
