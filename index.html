@@ -116,9 +116,9 @@
     </div>
   </section>
 
-  <!-- On a phone: the app's story told by scrolling. The phone pins under the header and each swipe
-       moves it one step on; the caption above it follows. Shown only with JavaScript (see .js in <head>);
-       without it, the hero's phones show instead. -->
+  <!-- The app's story told by scrolling. The phone pins under the header and each swipe moves it one step
+       on; the words follow, above it on a phone and beside it wider. Shown only with JavaScript (see .js in
+       <head>); without it, the hero's phones and the feature sections show instead. -->
   <section class="story" aria-labelledby="story-title">
     <h2 class="sr-only" id="story-title">How What's Good works</h2>
     <ol class="sr-only">
@@ -323,7 +323,7 @@
 </div>
 
 <script>
-// The story on phones: the scroll position picks the step and how far into it, and the drawn phone and
+// The story: the scroll position picks the step and how far into it, and the drawn phone and
 // caption follow. Tonight gets two swipes (two cards are written), the rest one each. Nothing is stored or sent.
 (() => {
   const story = document.querySelector('.story');
@@ -370,17 +370,23 @@
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const ease = x => x * x * (3 - 2 * x);
   const shown = { step: -1, field: null, cards: -1 };
-  let lift = 0, approach = 1;
+  let lift = 0, glide = 0, approach = 1, scale = 1;
 
   function size() {
     document.documentElement.style.setProperty('--header-h', `${document.querySelector('.site-header').offsetHeight}px`);
-    const avail = pin.clientHeight - caption.offsetHeight - 12 - 24;
-    const s = clamp(Math.min(avail / 692, (innerWidth - 48) / 320), .4, 1);
+    const narrow = mobile.matches;
+    const avail = narrow ? pin.clientHeight - caption.offsetHeight - 12 - 24 : pin.clientHeight - 48;
+    const s = clamp(Math.min(avail / 692, narrow ? (innerWidth - 48) / 320 : 1), .4, 1);
     box.style.width = `${320 * s}px`; box.style.height = `${692 * s}px`;
     phone.style.transform = `scale(${s})`;
-    // At the top of the page the phone sits up in the caption's (still empty) space, close under the
-    // hero; it gives that space back as the page scrolls, moving slower than the text above it.
-    lift = Math.max(0, caption.offsetHeight + 12 - 40);
+    scale = s;
+    // At the top of the page the phone sits close under the hero: on a phone up in the caption's (still
+    // empty) space, wider in the middle of the window. It moves to its place as the page scrolls, slower
+    // than the text above it, and the words fade in.
+    box.style.transform = '';
+    const r = box.getBoundingClientRect();
+    lift = narrow ? Math.max(0, caption.offsetHeight + 12 - 40) : 0;
+    glide = narrow ? 0 : innerWidth / 2 - (r.left + r.width / 2);
     approach = Math.max(1, story.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(pin).top) || 0));
   }
 
@@ -389,8 +395,9 @@
     $('[data-cap="title"]').textContent = c.title;
     $('[data-cap="text"]').textContent = c.text;
     // A new caption rises in; its words animate, not the caption, whose opacity follows the scroll.
-    if (first || still.matches) return;
-    for (const e of caption.children) e.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'ease-out' });
+    if (first || still.matches || !mobile.matches) return;
+    const rise = mobile.matches ? 6 : 18;
+    for (const e of caption.children) e.animate?.([{ opacity: 0, transform: `translateY(${rise}px)` }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'ease-out' });
   }
 
   function setField(text) {
@@ -425,17 +432,30 @@
   }
 
   function render() {
-    if (!mobile.matches) return;
     const top = parseFloat(getComputedStyle(pin).top) || 0;
     const scrolled = top - story.getBoundingClientRect().top;
     const before = clamp(-scrolled / approach);
-    box.style.transform = `translateY(${-lift * before}px)`;
-    caption.style.opacity = ease(clamp((.75 - before) / .75));
+    box.style.transform = `translate(${glide * before}px, ${-lift * before}px)`;
 
+    const unit = (story.offsetHeight - pin.offsetHeight) / total;
     let p = clamp(scrolled / (story.offsetHeight - pin.offsetHeight)) * total, i = 0;
     while (i < steps.length - 1 && p >= steps[i].weight) { p -= steps[i].weight; i++; }
     const t = clamp(p / steps[i].weight);
     if (i !== shown.step) { setCaption(i, shown.step < 0); shown.step = i; }
+
+    // Wider, the words scroll through with you: near the end of a step they slide up and fade, and the
+    // next ones rise from a little below as it begins. The line travels a touch further than the heading.
+    let shift = 0, fade = 1;
+    if (!mobile.matches) {
+      const at = p * unit, len = steps[i].weight * unit, zone = Math.min(170, len * .3);
+      if (i > 0 && at < zone) { const k = 1 - at / zone; shift = k; fade = 1 - k; }
+      else if (i < steps.length - 1 && at > len - zone) { const k = (at - (len - zone)) / zone; shift = -k; fade = 1 - k; }
+    }
+    const [head, line] = caption.children;
+    const move = still.matches ? 0 : 56;
+    head.style.transform = shift ? `translateY(${shift * move}px)` : '';
+    line.style.transform = shift ? `translateY(${shift * move * 1.35}px)` : '';
+    caption.style.opacity = ease(clamp((.75 - before) / .75)) * ease(clamp(fade));
 
     const view = steps[i].view;
     story.querySelectorAll('.view').forEach(v => v.classList.toggle('on', v.dataset.view === view || (view === 'outdoors' && v.dataset.view === 'map')));
@@ -447,10 +467,14 @@
       setCards(t < .4 ? 0 : t < .84 ? 1 : 2);
     } else { setField(''); setCards(2); }
 
-    // The Journal's page scrolls as you do.
+    // The Journal's page holds still for the first quarter of its step, while its words come in, then
+    // scrolls at half the speed of the page around it (measured on screen, so the phone's own scale doesn't
+    // change it), up to its last day.
     const scroller = $('[data-scroller]'), page = $('[data-journal]');
     const far = Math.max(0, page.offsetHeight + 90 - scroller.clientHeight);
-    page.style.transform = `translateY(${-(i === 1 ? ease(clamp((t - .08) / .84)) : i > 1 ? 1 : 0) * far}px)`;
+    const hold = steps[1].weight * unit * .25;
+    const read = Math.max(0, (i === 1 ? p * unit : i > 1 ? steps[1].weight * unit : 0) - hold);
+    page.style.transform = `translateY(${-Math.min(far, read * .5 / scale)}px)`;
 
     // The map's groups arrive one by one around You.
     const groups = i < 2 ? 0 : i > 2 || still.matches ? 6 : 1 + Math.floor(clamp(t / .85) * 5.99);
