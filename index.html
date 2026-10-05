@@ -16,6 +16,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/literata-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 
@@ -29,10 +30,12 @@
 
 <main>
   <section class="wrap hero">
-    <span class="chip">Now in beta on TestFlight</span>
     <h1>End each day on what was <span class="mark">good</span>.</h1>
     <p>One question before bed. Write a line or two. Over the weeks, What's Good draws a map of the people and things that make your life good.</p>
-    <span class="fine">Free · iPhone 15 Pro or newer · Apple Intelligence</span>
+    <div class="cta">
+      <a class="chip" href="https://testflight.apple.com/join/zZkecsFE">Now in beta on TestFlight</a>
+      <span class="fine">Free · iPhone 15 Pro or newer · Apple Intelligence</span>
+    </div>
   </section>
 
   <section class="stage" aria-label="What's Good on iPhone: Tonight, the Journal and the map">
@@ -48,7 +51,7 @@
     <div class="side left" aria-hidden="true">
       <div class="phone"><div class="screen">
         <div class="island"></div>
-        <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+        <div class="bar"><span class="serif">What's Good</span></div>
         <div class="body" style="gap: 12px">
           <span class="title">Journal</span>
           <span class="month">October 2026</span>
@@ -62,7 +65,7 @@
     <div class="side right" aria-hidden="true">
       <div class="phone"><div class="screen">
         <div class="island"></div>
-        <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+        <div class="bar"><span class="serif">What's Good</span></div>
         <div class="map" style="left: 150px; top: 350px">
           <div class="disc ring" style="left: -90px; top: -90px; width: 180px; height: 180px"></div>
           <div class="disc ring" style="left: -150px; top: -150px; width: 300px; height: 300px"></div>
@@ -89,7 +92,7 @@
       <div class="phone" role="img" aria-label="Tonight: the question “What are you grateful for today?” with three good things written below it">
         <div class="screen" aria-hidden="true">
           <div class="island"></div>
-          <div class="bar"><span class="serif">What's Good</span><span class="gear"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></span></div>
+          <div class="bar"><span class="serif">What's Good</span></div>
           <div class="body">
             <span class="date">Friday 2 October</span>
             <span class="question">What are you grateful for today?</span>
@@ -110,6 +113,97 @@
     </div>
   </section>
 
+  <!-- On a phone: the app's story told by scrolling. The phone pins under the header and each swipe
+       moves it one step on; the caption above it follows. Shown only with JavaScript (see .js in <head>);
+       without it, the hero's phones show instead. -->
+  <section class="story" aria-labelledby="story-title">
+    <h2 class="sr-only" id="story-title">How What's Good works</h2>
+    <ol class="sr-only">
+      <li>Tonight. One question every night: write what was good today and press return. One card is enough.</li>
+      <li>Journal. Every evening is kept, one card a day, in the order you wrote it.</li>
+      <li>Map. The people and things you write about gather around you, closer the more they matter. You never tag anything.</li>
+      <li>Look closer, down to the morning you wrote about. It's all drawn on your iPhone.</li>
+    </ol>
+
+    <div class="story-pin" aria-hidden="true">
+      <div class="story-caption">
+        <span class="eyebrow" data-cap="label">Tonight</span>
+        <h2 data-cap="title">One question every night.</h2>
+        <p data-cap="text">Write what was good today. One card is enough.</p>
+      </div>
+
+      <div class="story-phone">
+        <div class="phone">
+          <div class="screen">
+            <div class="island"></div>
+            <div class="bar"><span class="serif">What's Good</span></div>
+
+            <div class="view" data-view="tonight">
+              <div class="body">
+                <span class="date" data-today></span>
+                <span class="question">What are you grateful for today?</span>
+                <div class="card field" data-field><span class="placeholder">Write it here…</span></div>
+                <div class="cards" data-cards></div>
+              </div>
+            </div>
+
+            <div class="view" data-view="journal">
+              <div class="scroller" data-scroller>
+                <div class="body" style="gap: 12px" data-journal>
+                  <span class="title">Journal</span>
+                  <div class="days" data-days></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="view" data-view="map">
+              <div class="zoomed" data-zoom>
+              <div class="map" style="left: 150px; top: 350px">
+                <div class="disc ring" style="left: -90px; top: -90px; width: 180px; height: 180px"></div>
+                <div class="disc ring" style="left: -150px; top: -150px; width: 300px; height: 300px"></div>
+                <div class="disc you" style="left: -11px; top: -11px; width: 22px; height: 22px"></div>
+                <span class="nm" style="left: 0; top: -30px; font: 600 11px var(--sans)">You</span>
+                <div class="cl" data-n="1"><div class="disc" style="left: -128px; top: -150px; width: 124px; height: 124px; background: var(--rose)"></div><div class="dot" style="left: -66px; top: -88px"></div><span class="nm" style="left: -66px; top: -172px; font-size: 14px">Family</span></div>
+                <div class="cl" data-n="2"><div class="disc" style="left: 6px; top: 44px; width: 118px; height: 118px; background: var(--sage)"></div><div class="dot" style="left: 65px; top: 103px"></div><span class="nm" style="left: 65px; top: 22px; font-size: 14px">Outdoors</span></div>
+                <div class="cl" data-n="3"><div class="disc" style="left: 26px; top: -140px; width: 84px; height: 84px; background: var(--butter)"></div><div class="dot" style="left: 68px; top: -98px"></div><span class="nm" style="left: 68px; top: -162px; font-size: 14px">Food</span></div>
+                <div class="cl" data-n="4"><div class="disc" style="left: -132px; top: 58px; width: 78px; height: 78px; background: var(--periwinkle)"></div><div class="dot" style="left: -93px; top: 97px"></div><span class="nm" style="left: -93px; top: 36px; font-size: 14px">Friends</span></div>
+                <div class="cl" data-n="5"><div class="disc" style="left: -30px; top: -236px; width: 54px; height: 54px; background: var(--lilac)"></div><div class="dot" style="left: -3px; top: -209px"></div><span class="nm" style="left: -3px; top: -256px; font-size: 12px">Music</span></div>
+                <div class="cl" data-n="6"><div class="disc" style="left: -44px; top: 180px; width: 58px; height: 58px; background: var(--sky)"></div><div class="dot" style="left: -15px; top: 209px"></div><span class="nm" style="left: -15px; top: 160px; font-size: 12px">Sport</span></div>
+              </div>
+              </div>
+            </div>
+
+            <div class="view" data-view="outdoors">
+              <div class="zoomed" data-zoomed-in>
+              <div class="map" style="left: 150px; top: 330px">
+                <div class="disc" style="left: -230px; top: -230px; width: 460px; height: 460px; background: var(--sage); opacity: .55"></div>
+                <div class="disc" style="left: -128px; top: -170px; width: 170px; height: 170px; background: var(--sky); opacity: .9"></div>
+                <div class="disc" style="left: -6px; top: 6px; width: 150px; height: 150px; background: var(--butter); opacity: .85"></div>
+                <span class="nm" style="left: -43px; top: -196px; font-size: 18px">Cycling</span>
+                <span class="nm" style="left: 69px; top: -20px; font-size: 18px">Hiking</span>
+                <div class="dot" style="left: -80px; top: -110px"></div><span class="nm" style="left: -80px; top: -132px; font-size: 13px">Bikepacking</span>
+                <div class="dot" style="left: -10px; top: -60px"></div><span class="nm" style="left: -10px; top: -82px; font-size: 13px">Commute</span>
+                <div class="dot" style="left: 69px; top: 80px"></div><span class="nm" style="left: 69px; top: 58px; font-size: 13px">Forest walks</span>
+                <div class="disc you" style="left: -128px; top: 150px; width: 9px; height: 9px"></div>
+                <div class="moment" data-moment style="left: -122px; top: 170px">“Cycled to work through the fog, city still quiet.”</div>
+              </div>
+              </div>
+              <span class="nm faint" data-zoom-title style="left: 18px; top: 96px; font-size: 24px">Outdoors</span>
+            </div>
+
+            <div class="tabs">
+              <div class="pill">
+                <span class="tab" data-tab="tonight"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>Tonight</span>
+                <span class="tab" data-tab="journal"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>Journal</span>
+              </div>
+              <span class="round" data-tab="map"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="wrap features">
     <section class="feature">
       <div class="copy">
@@ -121,7 +215,7 @@
       <div class="phone" role="img" aria-label="Tonight with two good things and the offer of an evening reminder">
         <div class="screen" aria-hidden="true">
           <div class="island"></div>
-          <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+          <div class="bar"><span class="serif">What's Good</span></div>
           <div class="body">
             <span class="date">Thursday 1 October</span>
             <span class="question">What are you grateful for today?</span>
@@ -149,7 +243,7 @@
       <div class="phone" role="img" aria-label="The Journal: the last days of September, one card per day">
         <div class="screen" aria-hidden="true">
           <div class="island"></div>
-          <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+          <div class="bar"><span class="serif">What's Good</span></div>
           <div class="body" style="gap: 12px">
             <span class="title">Journal</span>
             <span class="month">September 2026</span>
@@ -172,7 +266,7 @@
       <div class="phone" role="img" aria-label="The map zoomed into Outdoors: Cycling and Hiking, and a moment someone wrote">
         <div class="screen" aria-hidden="true">
           <div class="island"></div>
-          <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+          <div class="bar"><span class="serif">What's Good</span></div>
           <div class="map" style="left: 150px; top: 330px">
             <div class="disc" style="left: -230px; top: -230px; width: 460px; height: 460px; background: var(--sage); opacity: .55"></div>
             <div class="disc" style="left: -128px; top: -170px; width: 170px; height: 170px; background: var(--sky); opacity: .9"></div>
@@ -221,10 +315,161 @@
 
 <div class="wrap">
   <footer class="site-footer">
-    <span><span class="serif" style="color: var(--ink)">What's Good</span> · Made in Oslo</span>
+    <span><span class="serif" style="color: var(--ink)">What's Good</span> · Built in Scandinavia</span>
     <nav><a href="privacy.html">Privacy</a><a href="support.html">Support</a></nav>
   </footer>
 </div>
+
+<script>
+// The story on phones: the scroll position picks the step and how far into it, and the drawn phone and
+// caption follow. Tonight gets two swipes (two cards are written), the rest one each. Nothing is stored or sent.
+(() => {
+  const story = document.querySelector('.story');
+  if (!story) return;
+  const $ = (q, el = story) => el.querySelector(q);
+  const pin = $('.story-pin'), box = $('.story-phone'), phone = $('.story-phone .phone'), caption = $('.story-caption');
+  const mobile = matchMedia('(max-width: 600px)'), still = matchMedia('(prefers-reduced-motion: reduce)');
+
+  const steps = [
+    { view: 'tonight', weight: 2, label: 'Tonight', title: 'One question every night.', text: 'Write what was good today. One card is enough.' },
+    { view: 'journal', weight: 1.2, label: 'Journal', title: 'Every evening, kept.', text: 'Every good thing goes into your journal, one card a day.' },
+    { view: 'map', weight: 1, label: 'Map', title: 'Your life, drawn as it grows.', text: 'What you write about gathers around you. You never tag a thing.' },
+    { view: 'outdoors', weight: 1.3, label: 'Map', title: 'Look closer.', text: 'Down to the morning you wrote about, all drawn on your iPhone.' },
+  ];
+  const total = steps.reduce((n, s) => n + s.weight, 0);
+  const tonight = ['Pancakes with the kids before school', 'A long walk with Sutyi in the rain'];
+  const past = [
+    { ago: 1, lines: ['Coffee on the balcony with Anna', 'A long call with Mum'] },
+    { ago: 2, lines: ['Dinner with Peter and Anna', 'Swam in the fjord in the rain'] },
+    { ago: 3, lines: ['Miso asleep on my feet the whole film'] },
+    { ago: 5, lines: ['The bus driver waited for me', 'Fresh bread from the corner bakery'] },
+    { ago: 6, lines: ['Cycled to work through the fog, city still quiet'] },
+    { ago: 8, lines: ['Emma read the bedtime story to me for once', 'The descent after the long climb'] },
+    { ago: 9, lines: ['The first fire of the autumn'] },
+  ];
+
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
+  const fmt = (d, o) => new Intl.DateTimeFormat('en-GB', o).format(d);
+  const now = new Date();
+  const ago = n => new Date(now.getFullYear(), now.getMonth(), now.getDate() - n);
+  $('[data-today]').textContent = `${fmt(now, { weekday: 'long' })} ${now.getDate()} ${fmt(now, { month: 'long' })}`;
+
+  // The Journal: today's two cards, then earlier days; the newest month has no heading.
+  let month = now.getMonth();
+  for (const day of [{ ago: 0, lines: tonight }, ...past]) {
+    const d = ago(day.ago);
+    if (d.getMonth() !== month) { month = d.getMonth(); $('[data-days]').append(el('span', 'month', `${fmt(d, { month: 'long' })} ${d.getFullYear()}`)); }
+    const card = el('div', 'card day'), head = el('header');
+    head.append(el('b', '', String(d.getDate())), el('span', day.ago === 0 ? 'today' : '', fmt(d, { weekday: 'long' }).toUpperCase()));
+    card.append(head, ...day.lines.map(t => el('div', '', t)));
+    $('[data-days]').append(card);
+  }
+
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = x => x * x * (3 - 2 * x);
+  const shown = { step: -1, field: null, cards: -1 };
+  let lift = 0, approach = 1;
+
+  function size() {
+    document.documentElement.style.setProperty('--header-h', `${document.querySelector('.site-header').offsetHeight}px`);
+    const avail = pin.clientHeight - caption.offsetHeight - 18 - 24;
+    const s = clamp(Math.min(avail / 692, (innerWidth - 48) / 320), .4, 1);
+    box.style.width = `${320 * s}px`; box.style.height = `${692 * s}px`;
+    phone.style.transform = `scale(${s})`;
+    // At the top of the page the phone sits up in the caption's (still empty) space, close under the
+    // hero; it gives that space back as the page scrolls, moving slower than the text above it.
+    lift = Math.max(0, caption.offsetHeight + 18 - 40);
+    approach = Math.max(1, story.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(pin).top) || 0));
+  }
+
+  function setCaption(i) {
+    const c = steps[i];
+    $('[data-cap="label"]').textContent = c.label;
+    $('[data-cap="title"]').textContent = c.title;
+    $('[data-cap="text"]').textContent = c.text;
+    if (!still.matches && caption.animate) caption.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 320, easing: 'ease-out' });
+  }
+
+  function setField(text) {
+    if (text === shown.field) return;
+    shown.field = text;
+    const field = $('[data-field]');
+    field.replaceChildren(...(text ? [document.createTextNode(text), el('span', 'caret')] : [el('span', 'placeholder', 'Write it here…')]));
+  }
+
+  function setCards(n) {
+    if (n === shown.cards) return;
+    shown.cards = n;
+    $('[data-cards]').replaceChildren(...tonight.slice(0, n).reverse().map(t => el('div', 'card', t)));
+  }
+
+  // Tonight: type the first good thing, return makes it a card; then the second the same way.
+  function typed(text, t, from, to) {
+    if (t < from || t >= to + .04) return null;
+    const k = still.matches ? 1 : clamp((t - from) / (to - from));
+    return text.slice(0, Math.round(k * text.length));
+  }
+
+  // The zoom into Outdoors is one move: the overview scales about the Outdoors circle until it fills the
+  // screen, and the Outdoors view rides inside it, from the circle's size up to its own.
+  const A = [215, 453], B = [150, 330], K = 230 / 59;
+  function zoomTo(z) {
+    const s = Math.pow(K, z), e = (s - 1) / (K - 1);
+    const tx = A[0] + (B[0] - A[0]) * e - A[0] * s, ty = A[1] + (B[1] - A[1]) * e - A[1] * s;
+    $('[data-zoom]').style.transform = `matrix(${s},0,0,${s},${tx},${ty})`;
+    const s2 = s / K, tx2 = s * A[0] - s * B[0] / K + tx, ty2 = s * A[1] - s * B[1] / K + ty;
+    $('[data-zoomed-in]').style.transform = `matrix(${s2},0,0,${s2},${tx2},${ty2})`;
+  }
+
+  function render() {
+    if (!mobile.matches) return;
+    const top = parseFloat(getComputedStyle(pin).top) || 0;
+    const scrolled = top - story.getBoundingClientRect().top;
+    const before = clamp(-scrolled / approach);
+    box.style.transform = `translateY(${-lift * before}px)`;
+    caption.style.opacity = clamp((.5 - before) / .5);
+
+    let p = clamp(scrolled / (story.offsetHeight - pin.offsetHeight)) * total, i = 0;
+    while (i < steps.length - 1 && p >= steps[i].weight) { p -= steps[i].weight; i++; }
+    const t = clamp(p / steps[i].weight);
+    if (i !== shown.step) { shown.step = i; setCaption(i); }
+
+    const view = steps[i].view;
+    story.querySelectorAll('.view').forEach(v => v.classList.toggle('on', v.dataset.view === view || (view === 'outdoors' && v.dataset.view === 'map')));
+    const tab = view === 'outdoors' ? 'map' : view;
+    story.querySelectorAll('[data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+
+    if (i === 0) {
+      setField(typed(tonight[0], t, .06, .34) ?? typed(tonight[1], t, .5, .78) ?? '');
+      setCards(t < .4 ? 0 : t < .84 ? 1 : 2);
+    } else { setField(''); setCards(2); }
+
+    // The Journal's page scrolls as you do.
+    const scroller = $('[data-scroller]'), page = $('[data-journal]');
+    const far = Math.max(0, page.offsetHeight + 90 - scroller.clientHeight);
+    page.style.transform = `translateY(${-(i === 1 ? ease(clamp((t - .08) / .84)) : i > 1 ? 1 : 0) * far}px)`;
+
+    // The map's groups arrive one by one around You.
+    const groups = i < 2 ? 0 : i > 2 || still.matches ? 6 : 1 + Math.floor(clamp(t / .85) * 5.99);
+    story.querySelectorAll('.cl').forEach(g => g.classList.toggle('off', +g.dataset.n > groups));
+
+    // Zoom into Outdoors, and the written morning appears.
+    const z = i === 3 ? (still.matches ? (t > .3 ? 1 : 0) : ease(clamp(t / .6))) : 0;
+    if (still.matches) { $('[data-zoom]').style.transform = ''; $('[data-zoomed-in]').style.transform = ''; } else zoomTo(z);
+    $('[data-zoom]').style.opacity = i === 3 ? 1 - clamp((z - .45) / .35) : '';
+    $('[data-zoomed-in]').style.opacity = clamp((z - .3) / .4);
+    $('[data-zoom-title]').style.opacity = clamp((z - .7) / .3);
+    $('[data-moment]').style.opacity = i === 3 ? clamp((t - .7) / .2) : 0;
+  }
+
+  let queued = false;
+  const frame = () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; render(); }); } };
+  addEventListener('scroll', frame, { passive: true });
+  addEventListener('resize', () => { size(); frame(); });
+  mobile.addEventListener('change', () => { size(); frame(); });
+  size(); render();
+})();
+</script>
 
 </body>
 </html>
