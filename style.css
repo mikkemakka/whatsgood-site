@@ -204,9 +204,9 @@ h1, h2 { text-wrap: balance; }
   .js .story { display: block; position: relative; height: calc(100svh + 5.5 * 80svh); margin-top: 8px; }
   .story-pin {
     position: sticky; top: var(--header-h, 68px); height: calc(100svh - var(--header-h, 68px));
-    display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 8px 24px 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 24px 16px;
   }
-  .story-caption { opacity: 0; width: 100%; max-width: 340px; height: 142px; flex: none; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; text-align: center; }
+  .story-caption { opacity: 0; width: 100%; max-width: 340px; height: 112px; flex: none; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; text-align: center; }
   .story-caption h2 { margin: 0; font-size: 26px; line-height: 1.15; letter-spacing: -.01em; text-wrap: balance; }
   .story-caption p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--muted); text-wrap: balance; }
   .story-phone { position: relative; flex: none; }
