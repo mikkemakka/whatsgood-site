@@ -231,6 +231,11 @@ h1, h2 { text-wrap: balance; }
 /* Wider: the words and the phone, centred together as one group: the words on the left (set left), the
    phone just to the right of the middle, so it only glides a little from under the hero. */
 @media (min-width: 601px) {
+  /* The phone is centred in the pinned area, so on tall windows a gap opens between the hero and it. Half
+     of that gap moves above the title instead: the hero sits lower and the phone starts closer under it. */
+  .js { --half-gap: calc(16px + max(0px, (100svh - var(--header-h, 68px) - 740px) / 4)); }
+  .js .hero { padding-top: calc(56px + var(--half-gap)); }
+  .js .story { margin-top: calc(8px - var(--half-gap)); }
   .story-pin { justify-content: center; gap: clamp(32px, 4vw, 56px); padding: 24px; }
   .story-caption { width: min(330px, 34vw); gap: 16px; text-align: left; }
   .story-caption h2 { font-size: clamp(32px, 3.6vw, 48px); line-height: 1.1; }
