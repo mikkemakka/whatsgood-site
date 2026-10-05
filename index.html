@@ -186,11 +186,10 @@
                 <div class="dot" style="left: -80px; top: -110px"></div><span class="nm" style="left: -80px; top: -132px; font-size: 13px">Bikepacking</span>
                 <div class="dot" style="left: -10px; top: -60px"></div><span class="nm" style="left: -10px; top: -82px; font-size: 13px">Commute</span>
                 <div class="dot" style="left: 69px; top: 80px"></div><span class="nm" style="left: 69px; top: 58px; font-size: 13px">Forest walks</span>
-                <div class="disc you" style="left: -128px; top: 150px; width: 9px; height: 9px"></div>
-                <div class="moment" data-moment style="left: -122px; top: 170px">“Cycled to work through the fog, city still quiet.”</div>
+                <div class="disc you" style="left: -104.5px; top: 87.5px; width: 9px; height: 9px"></div>
+                <div class="moment" data-moment style="left: -104px; top: 106px; width: 104px">“Cycled to work through the fog, city still quiet.”</div>
               </div>
               </div>
-              <span class="nm faint" data-zoom-title style="left: 18px; top: 96px; font-size: 24px">Outdoors</span>
             </div>
 
             <div class="tabs">
@@ -484,7 +483,6 @@
     if (still.matches) { $('[data-zoom]').style.transform = ''; $('[data-zoomed-in]').style.transform = ''; } else zoomTo(z);
     $('[data-zoom]').style.opacity = i === 3 ? 1 - clamp((z - .45) / .35) : '';
     $('[data-zoomed-in]').style.opacity = clamp((z - .3) / .4);
-    $('[data-zoom-title]').style.opacity = clamp((z - .7) / .3);
     $('[data-moment]').style.opacity = i === 3 ? clamp((t - .7) / .2) : 0;
   }
 
