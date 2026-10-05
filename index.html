@@ -452,10 +452,11 @@
       setCards(t < .4 ? 0 : t < .84 ? 1 : 2);
     } else { setField(''); setCards(2); }
 
-    // The Journal's page scrolls as you do.
+    // The Journal's page scrolls as you do: wider, it starts slowly and picks up speed, like reading back.
     const scroller = $('[data-scroller]'), page = $('[data-journal]');
     const far = Math.max(0, page.offsetHeight + 90 - scroller.clientHeight);
-    page.style.transform = `translateY(${-(i === 1 ? ease(clamp((t - .08) / .84)) : i > 1 ? 1 : 0) * far}px)`;
+    const read = clamp((t - .08) / .84);
+    page.style.transform = `translateY(${-(i === 1 ? (mobile.matches ? ease(read) : Math.pow(read, 2.4)) : i > 1 ? 1 : 0) * far}px)`;
 
     // The map's groups arrive one by one around You.
     const groups = i < 2 ? 0 : i > 2 || still.matches ? 6 : 1 + Math.floor(clamp(t / .85) * 5.99);
