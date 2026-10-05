@@ -117,8 +117,9 @@
   </section>
 
   <!-- The app's story told by scrolling. The phone pins under the header and each swipe moves it one step
-       on; the words follow, above it on a phone and beside it wider. Shown only with JavaScript (see .js in
-       <head>); without it, the hero's phones and the feature sections show instead. -->
+       on; the words follow, above it on a phone and beside it wider. On a phone it replaces the hero's
+       phones; wider it follows them. Shown only with JavaScript (see .js in <head>); without it, the
+       feature sections show instead. -->
   <section class="story" aria-labelledby="story-title">
     <h2 class="sr-only" id="story-title">How What's Good works</h2>
     <ol class="sr-only">
@@ -370,7 +371,7 @@
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const ease = x => x * x * (3 - 2 * x);
   const shown = { step: -1, field: null, cards: -1 };
-  let lift = 0, glide = 0, approach = 1;
+  let lift = 0, approach = 1;
 
   function size() {
     document.documentElement.style.setProperty('--header-h', `${document.querySelector('.site-header').offsetHeight}px`);
@@ -379,14 +380,13 @@
     const s = clamp(Math.min(avail / 692, narrow ? (innerWidth - 48) / 320 : 1), .4, 1);
     box.style.width = `${320 * s}px`; box.style.height = `${692 * s}px`;
     phone.style.transform = `scale(${s})`;
-    // At the top of the page the phone sits close under the hero: on a phone up in the caption's (still
-    // empty) space, wider in the middle of the window. It moves to its place as the page scrolls, slower
-    // than the text above it, and the words fade in.
-    box.style.transform = '';
-    const r = box.getBoundingClientRect();
+    // On a phone, at the top of the page the phone sits close under the hero, up in the caption's (still
+    // empty) space, and gives that space back as the page scrolls, slower than the text above it. Wider,
+    // the story follows the hero's phones: its phone is already in place and the words fade in as it arrives.
     lift = narrow ? Math.max(0, caption.offsetHeight + 12 - 40) : 0;
-    glide = narrow ? 0 : innerWidth / 2 - (r.left + r.width / 2);
-    approach = Math.max(1, story.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(pin).top) || 0));
+    approach = narrow
+      ? Math.max(1, story.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(pin).top) || 0))
+      : innerHeight * .6;
   }
 
   function setCaption(i, first) {
@@ -434,7 +434,7 @@
     const top = parseFloat(getComputedStyle(pin).top) || 0;
     const scrolled = top - story.getBoundingClientRect().top;
     const before = clamp(-scrolled / approach);
-    box.style.transform = `translate(${glide * before}px, ${-lift * before}px)`;
+    box.style.transform = `translateY(${-lift * before}px)`;
     caption.style.opacity = ease(clamp((.75 - before) / .75));
 
     let p = clamp(scrolled / (story.offsetHeight - pin.offsetHeight)) * total, i = 0;
