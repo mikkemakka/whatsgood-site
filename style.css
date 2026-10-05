@@ -171,6 +171,41 @@ h1, h2 { text-wrap: balance; }
 .closing .lede { max-width: 30em; }
 .closing .fine { max-width: 34em; line-height: 1.6; }
 
+/* On a phone the page gets quieter: the three screens are one swipeable row under the hero, and
+   everything after it is words, split by hairlines. */
+@media (max-width: 600px) {
+  .stage {
+    height: auto; margin-top: 40px; display: flex; gap: 16px;
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none;
+    padding: 8px calc((100% - 250px) / 2) 56px;
+  }
+  .stage::-webkit-scrollbar { display: none; }
+  .stage .sky { display: none; }
+  .stage .front, .stage .side.left, .stage .side.right {
+    display: block; position: static; flex: none; width: auto; height: auto; margin: 0; transform: none; scroll-snap-align: center;
+  }
+  .stage .front { order: 1; }
+  .stage .side.left { order: 2; }
+  .stage .side.right { order: 3; }
+  .stage .phone, .stage .side .phone { zoom: .78; transform: none; }
+
+  .features { gap: 0; padding-top: 8px; }
+  .feature { display: block; padding-block: 40px; }
+  .feature + .feature { border-top: 1px solid var(--line); }
+  .feature .copy { max-width: none; gap: 14px; }
+  .feature h2 { font-size: 32px; }
+  .feature .lede { font-size: 17px; }
+  .feature .phone, .feature .facts { display: none; }
+
+  .values { display: block; border-top: 1px solid var(--line); margin-bottom: 72px; }
+  .value { display: grid; grid-template-columns: 24px 1fr; gap: 6px 16px; padding: 24px 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; }
+  .value svg { grid-row: span 2; width: 24px; height: 24px; margin-top: 2px; }
+  .value h3 { font-size: 20px; }
+
+  .closing { gap: 20px; padding-bottom: 56px; }
+  .closing img { width: 80px; height: 80px; border-radius: 19px; }
+}
+
 /* An iPhone, drawn: the app's screens in its own type and colours */
 .phone { position: relative; width: 320px; height: 692px; border-radius: 54px; padding: 10px; background: var(--bezel); box-shadow: var(--shadow); flex: none; text-align: left; }
 .screen { position: relative; width: 100%; height: 100%; border-radius: 44px; background: var(--bg); overflow: hidden; }
