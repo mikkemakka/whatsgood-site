@@ -441,17 +441,15 @@
     if (i !== shown.step) { setCaption(i, shown.step < 0); shown.step = i; }
 
     // Wider, the words scroll through with you: near the end of a step they slide up and fade, and the
-    // next ones rise from a little below as it begins. The line travels a touch further than the heading.
+    // next ones rise from a little below as it begins. Heading and line move together, as one block.
     let shift = 0, fade = 1;
     if (!mobile.matches) {
       const at = p * unit, len = steps[i].weight * unit, zone = Math.min(170, len * .3);
       if (i > 0 && at < zone) { const k = 1 - at / zone; shift = k; fade = 1 - k; }
       else if (i < steps.length - 1 && at > len - zone) { const k = (at - (len - zone)) / zone; shift = -k; fade = 1 - k; }
     }
-    const [head, line] = caption.children;
     const move = still.matches ? 0 : 56;
-    head.style.transform = shift ? `translateY(${shift * move}px)` : '';
-    line.style.transform = shift ? `translateY(${shift * move * 1.35}px)` : '';
+    caption.style.transform = shift ? `translateY(${shift * move}px)` : '';
     caption.style.opacity = ease(clamp((.75 - before) / .75)) * ease(clamp(fade));
 
     const view = steps[i].view;
