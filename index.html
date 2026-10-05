@@ -370,7 +370,7 @@
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const ease = x => x * x * (3 - 2 * x);
   const shown = { step: -1, field: null, cards: -1 };
-  let lift = 0, glide = 0, approach = 1;
+  let lift = 0, approach = 1;
 
   function size() {
     document.documentElement.style.setProperty('--header-h', `${document.querySelector('.site-header').offsetHeight}px`);
@@ -379,13 +379,11 @@
     const s = clamp(Math.min(avail / 692, narrow ? (innerWidth - 48) / 320 : 1), .4, 1);
     box.style.width = `${320 * s}px`; box.style.height = `${692 * s}px`;
     phone.style.transform = `scale(${s})`;
-    // At the top of the page the phone sits close under the hero: on a phone up in the caption's (still
-    // empty) space, wider in the middle of the window. It moves to its place as the page scrolls, slower
-    // than the text above it, and the words fade in.
-    box.style.transform = '';
-    const r = box.getBoundingClientRect();
+    // At the top of the page the phone sits close under the hero. On a phone it starts up in the caption's
+    // (still empty) space and gives it back as the page scrolls, slower than the text above it; wider it
+    // stays in the middle and the words fade in either side of it.
     lift = narrow ? Math.max(0, caption.offsetHeight + 12 - 40) : 0;
-    glide = narrow ? 0 : innerWidth / 2 - (r.left + r.width / 2);
+    pin.style.setProperty('--phone-w', `${320 * s}px`);
     approach = Math.max(1, story.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(pin).top) || 0));
   }
 
@@ -434,7 +432,7 @@
     const top = parseFloat(getComputedStyle(pin).top) || 0;
     const scrolled = top - story.getBoundingClientRect().top;
     const before = clamp(-scrolled / approach);
-    box.style.transform = `translate(${glide * before}px, ${-lift * before}px)`;
+    box.style.transform = `translateY(${-lift * before}px)`;
     caption.style.opacity = ease(clamp((.75 - before) / .75));
 
     let p = clamp(scrolled / (story.offsetHeight - pin.offsetHeight)) * total, i = 0;
