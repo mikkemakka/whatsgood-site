@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What's Good · An evening gratitude journal for iPhone</title>
-<meta name="description" content="One question before bed. Write a line or two. Over the weeks, What's Good draws a map of the people and things that make your life good. Now in beta on TestFlight.">
+<meta name="description" content="One question before bedtime. Over the weeks, What's Good draws a map of the people and things that make your life good. Now in beta on TestFlight.">
 <meta name="theme-color" content="#EDEFF3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#171B26" media="(prefers-color-scheme: dark)">
 <meta property="og:title" content="What's Good">
@@ -18,7 +18,7 @@
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/literata-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2026100502">
 <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
@@ -34,7 +34,7 @@
 <main>
   <section class="wrap hero">
     <h1>Focus on<br> what&rsquo;s <span class="mark">good</span>.</h1>
-    <p>One question before bed. Write a line or two. Over the weeks, What's Good draws a map of the people and things that make your life good.</p>
+    <p>One question before bedtime. Over the weeks, What's Good draws a map of the people and things that make your life good.</p>
     <div class="cta">
       <a class="chip" href="https://testflight.apple.com/join/zZkecsFE">Now in beta on TestFlight</a>
       <span class="fine">Free · iPhone 15 Pro or newer · Apple Intelligence</span>
@@ -186,11 +186,10 @@
                 <div class="dot" style="left: -80px; top: -110px"></div><span class="nm" style="left: -80px; top: -132px; font-size: 13px">Bikepacking</span>
                 <div class="dot" style="left: -10px; top: -60px"></div><span class="nm" style="left: -10px; top: -82px; font-size: 13px">Commute</span>
                 <div class="dot" style="left: 69px; top: 80px"></div><span class="nm" style="left: 69px; top: 58px; font-size: 13px">Forest walks</span>
-                <div class="disc you" style="left: -128px; top: 150px; width: 9px; height: 9px"></div>
-                <div class="moment" data-moment style="left: -122px; top: 170px">“Cycled to work through the fog, city still quiet.”</div>
+                <div class="disc you" style="left: -104.5px; top: 87.5px; width: 9px; height: 9px"></div>
+                <div class="moment" data-moment style="left: -104px; top: 106px; width: 104px">“Cycled to work through the fog, city still quiet.”</div>
               </div>
               </div>
-              <span class="nm faint" data-zoom-title style="left: 18px; top: 96px; font-size: 24px">Outdoors</span>
             </div>
 
             <div class="tabs">
@@ -306,9 +305,7 @@
     </section>
 
     <section class="closing" id="join">
-      <img src="assets/icon.png" alt="The What's Good app icon">
       <h2>Start tonight.</h2>
-      <p class="lede">What's Good is in beta on TestFlight. It's free while it's in beta.</p>
       <a class="btn" href="https://testflight.apple.com/join/zZkecsFE">Join the beta</a>
       <p class="fine">Needs an iPhone 15 Pro or newer with Apple Intelligence on, and writing in English. Gratitude journaling is a good habit, not a treatment.</p>
     </section>
@@ -334,7 +331,7 @@
 
   const steps = [
     { view: 'tonight', weight: 2, title: 'One question every night.', text: 'Write what was good today. One card is enough.' },
-    { view: 'journal', weight: 1.2, title: 'Every evening, kept.', text: 'Every good thing goes into your journal, one card a day.' },
+    { view: 'journal', weight: 2.4, title: 'Every evening, kept.', text: 'Every good thing goes into your journal, one card a day.' },
     { view: 'map', weight: 1, title: 'Your life, drawn as it grows.', text: 'What you write about gathers around you. You never tag a thing.' },
     { view: 'outdoors', weight: 1.3, title: 'Look closer.', text: 'Down to the morning you wrote about, all drawn on your iPhone.' },
   ];
@@ -444,17 +441,15 @@
     if (i !== shown.step) { setCaption(i, shown.step < 0); shown.step = i; }
 
     // Wider, the words scroll through with you: near the end of a step they slide up and fade, and the
-    // next ones rise from a little below as it begins. The line travels a touch further than the heading.
+    // next ones rise from a little below as it begins. Heading and line move together, as one block.
     let shift = 0, fade = 1;
     if (!mobile.matches) {
       const at = p * unit, len = steps[i].weight * unit, zone = Math.min(170, len * .3);
       if (i > 0 && at < zone) { const k = 1 - at / zone; shift = k; fade = 1 - k; }
       else if (i < steps.length - 1 && at > len - zone) { const k = (at - (len - zone)) / zone; shift = -k; fade = 1 - k; }
     }
-    const [head, line] = caption.children;
     const move = still.matches ? 0 : 56;
-    head.style.transform = shift ? `translateY(${shift * move}px)` : '';
-    line.style.transform = shift ? `translateY(${shift * move * 1.35}px)` : '';
+    caption.style.transform = shift ? `translateY(${shift * move}px)` : '';
     caption.style.opacity = ease(clamp((.75 - before) / .75)) * ease(clamp(fade));
 
     const view = steps[i].view;
@@ -467,14 +462,14 @@
       setCards(t < .4 ? 0 : t < .84 ? 1 : 2);
     } else { setField(''); setCards(2); }
 
-    // The Journal's page holds still for the first quarter of its step, while its words come in, then
-    // scrolls at half the speed of the page around it (measured on screen, so the phone's own scale doesn't
+    // The Journal's page holds still at the start of its step (a fixed stretch), while its words come in, then
+    // scrolls at a quarter of the speed of the page around it (measured on screen, so the phone's own scale doesn't
     // change it), up to its last day.
     const scroller = $('[data-scroller]'), page = $('[data-journal]');
     const far = Math.max(0, page.offsetHeight + 90 - scroller.clientHeight);
-    const hold = steps[1].weight * unit * .25;
+    const hold = unit * .3;
     const read = Math.max(0, (i === 1 ? p * unit : i > 1 ? steps[1].weight * unit : 0) - hold);
-    page.style.transform = `translateY(${-Math.min(far, read * .5 / scale)}px)`;
+    page.style.transform = `translateY(${-Math.min(far, read * .25 / scale)}px)`;
 
     // The map's groups arrive one by one around You.
     const groups = i < 2 ? 0 : i > 2 || still.matches ? 6 : 1 + Math.floor(clamp(t / .85) * 5.99);
@@ -485,7 +480,6 @@
     if (still.matches) { $('[data-zoom]').style.transform = ''; $('[data-zoomed-in]').style.transform = ''; } else zoomTo(z);
     $('[data-zoom]').style.opacity = i === 3 ? 1 - clamp((z - .45) / .35) : '';
     $('[data-zoomed-in]').style.opacity = clamp((z - .3) / .4);
-    $('[data-zoom-title]').style.opacity = clamp((z - .7) / .3);
     $('[data-moment]').style.opacity = i === 3 ? clamp((t - .7) / .2) : 0;
   }
 
