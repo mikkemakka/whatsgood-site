@@ -171,31 +171,45 @@ h1, h2 { text-wrap: balance; }
 .closing .lede { max-width: 30em; }
 .closing .fine { max-width: 34em; line-height: 1.6; }
 
-/* On a phone the page gets quieter: the three screens are one swipeable row under the hero, and
-   everything after it is words, split by hairlines. */
-@media (max-width: 600px) {
-  .stage {
-    height: auto; margin-top: 40px; display: flex; gap: 16px;
-    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none;
-    padding: 8px calc((100% - 250px) / 2) 56px;
-  }
-  .stage::-webkit-scrollbar { display: none; }
-  .stage .sky { display: none; }
-  .stage .front, .stage .side.left, .stage .side.right {
-    display: block; position: static; flex: none; width: auto; height: auto; margin: 0; transform: none; scroll-snap-align: center;
-  }
-  .stage .front { order: 1; }
-  .stage .side.left { order: 2; }
-  .stage .side.right { order: 3; }
-  .stage .phone, .stage .side .phone { zoom: .78; transform: none; }
+/* On a phone the page gets quieter: instead of pictures of the app there's one to try, with a caption
+   that follows along, then the values and the closing in words, split by hairlines. */
+.try { display: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-  .features { gap: 0; padding-top: 8px; }
-  .feature { display: block; padding-block: 40px; }
-  .feature + .feature { border-top: 1px solid var(--line); }
-  .feature .copy { max-width: none; gap: 14px; }
-  .feature h2 { font-size: 32px; }
-  .feature .lede { font-size: 17px; }
-  .feature .phone, .feature .facts { display: none; }
+@media (max-width: 600px) {
+  .stage, .features .feature { display: none; }
+  .features { gap: 0; padding-top: 0; }
+
+  .try { display: flex; flex-direction: column; align-items: center; gap: 20px; padding-block: 44px 64px; }
+  .try-caption { width: 100%; max-width: 320px; min-height: 132px; display: flex; flex-direction: column; gap: 6px; }
+  .try-caption p { margin: 0; font-family: var(--serif); font-size: 18px; line-height: 1.45; }
+  .try-note { margin: 0; text-align: center; }
+
+  .try .phone { height: 560px; }
+  .try .view { position: absolute; inset: 0; animation: view-in .3s ease both; }
+  .try [data-view="outdoors"] { animation: zoom-in .45s ease both; transform-origin: 70% 75%; }
+  .try [data-view="map"] .map, .try [data-view="outdoors"] .map { transform: scale(.8); }
+  .try .write { margin: 0; }
+  .try input.card { width: 100%; margin: 0; color: var(--ink); font-size: 16px; outline: none; }
+  .try input.card::placeholder { color: var(--muted); opacity: 1; }
+  .try input.card:focus { border-color: var(--accent); }
+  .try .cards { display: flex; flex-direction: column; gap: 9px; }
+  .try .cards .card { font-size: 16px; animation: view-in .3s ease both; }
+
+  .try button { font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .try .tab { min-height: 44px; justify-content: center; font-size: 10px; border: 0; background: none; color: var(--ink); }
+  .try .tab.on, .try .round.on { background: var(--soft-yellow); color: var(--link); }
+  .try .round { color: var(--ink); }
+  .try .go { padding: 0; border: 0; }
+  .try .hint { animation: hint 1.6s ease-in-out infinite; }
+
+  @keyframes view-in { from { opacity: 0; } }
+  @keyframes zoom-in { from { opacity: 0; transform: scale(.8); } }
+  @keyframes hint { 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 45%, transparent); } }
+  @media (prefers-reduced-motion: reduce) {
+    .try .view, .try .cards .card { animation: none; }
+    .try .hint { animation: none; box-shadow: 0 0 0 3px var(--accent); }
+  }
 
   .values { display: block; border-top: 1px solid var(--line); margin-bottom: 72px; }
   .value { display: grid; grid-template-columns: 24px 1fr; gap: 6px 16px; padding: 24px 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; }

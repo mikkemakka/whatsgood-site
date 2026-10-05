@@ -110,6 +110,88 @@
     </div>
   </section>
 
+  <!-- On a phone, the app to try: write a card, then follow it to the Journal and the map. The caption
+       above follows along. What's typed stays in this page and is gone on reload. -->
+  <section class="wrap try" aria-labelledby="try-label">
+    <div class="try-caption" aria-live="polite">
+      <span class="eyebrow" id="try-label">Tonight</span>
+      <p id="try-text">Tap the page and write one good thing from today. Press return to keep it.</p>
+    </div>
+
+    <div class="phone">
+      <div class="screen">
+        <div class="island" aria-hidden="true"></div>
+        <div class="bar" aria-hidden="true"><span class="serif">What's Good</span><span class="gear"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></span></div>
+
+        <div class="view" data-view="tonight">
+          <div class="body">
+            <span class="date" data-today></span>
+            <span class="question">What are you grateful for today?</span>
+            <form class="write">
+              <label class="sr-only" for="try-input">A good thing from today</label>
+              <input class="card" id="try-input" type="text" placeholder="Write it here…" autocomplete="off" enterkeyhint="done" maxlength="120">
+            </form>
+            <div class="cards" data-cards></div>
+          </div>
+        </div>
+
+        <div class="view" data-view="journal" hidden>
+          <div class="body" style="gap: 12px">
+            <span class="title">Journal</span>
+            <div data-days></div>
+          </div>
+        </div>
+
+        <div class="view" data-view="map" hidden>
+          <div class="map" style="left: 150px; top: 270px">
+            <div class="disc ring" style="left: -90px; top: -90px; width: 180px; height: 180px"></div>
+            <div class="disc ring" style="left: -150px; top: -150px; width: 300px; height: 300px"></div>
+            <div class="disc" style="left: -128px; top: -150px; width: 124px; height: 124px; background: var(--rose)"></div><div class="dot" style="left: -66px; top: -88px"></div>
+            <div class="disc" style="left: 26px; top: -140px; width: 84px; height: 84px; background: var(--butter)"></div><div class="dot" style="left: 68px; top: -98px"></div>
+            <button class="disc go" type="button" data-go="outdoors" style="left: 6px; top: 44px; width: 118px; height: 118px; background: var(--sage)"><span class="sr-only">Open Outdoors</span></button><div class="dot" style="left: 65px; top: 103px"></div>
+            <div class="disc" style="left: -132px; top: 58px; width: 78px; height: 78px; background: var(--periwinkle)"></div><div class="dot" style="left: -93px; top: 97px"></div>
+            <div class="disc" style="left: -30px; top: -236px; width: 54px; height: 54px; background: var(--lilac)"></div><div class="dot" style="left: -3px; top: -209px"></div>
+            <div class="disc" style="left: -44px; top: 180px; width: 58px; height: 58px; background: var(--sky)"></div><div class="dot" style="left: -15px; top: 209px"></div>
+            <div class="disc you" style="left: -11px; top: -11px; width: 22px; height: 22px"></div>
+            <span class="nm" aria-hidden="true" style="left: -66px; top: -172px; font-size: 14px">Family</span>
+            <span class="nm" aria-hidden="true" style="left: 68px; top: -162px; font-size: 14px">Food</span>
+            <span class="nm" aria-hidden="true" style="left: 65px; top: 22px; font-size: 14px">Outdoors</span>
+            <span class="nm" aria-hidden="true" style="left: -93px; top: 36px; font-size: 14px">Friends</span>
+            <span class="nm" aria-hidden="true" style="left: -3px; top: -256px; font-size: 12px">Music</span>
+            <span class="nm" aria-hidden="true" style="left: -15px; top: 160px; font-size: 12px">Sport</span>
+            <span class="nm" aria-hidden="true" style="left: 0; top: -30px; font: 600 11px var(--sans)">You</span>
+          </div>
+        </div>
+
+        <div class="view" data-view="outdoors" hidden aria-hidden="true">
+          <div class="map" style="left: 150px; top: 290px">
+            <div class="disc" style="left: -230px; top: -230px; width: 460px; height: 460px; background: var(--sage); opacity: .55"></div>
+            <div class="disc" style="left: -128px; top: -170px; width: 170px; height: 170px; background: var(--sky); opacity: .9"></div>
+            <div class="disc" style="left: -6px; top: 6px; width: 150px; height: 150px; background: var(--butter); opacity: .85"></div>
+            <span class="nm" style="left: -43px; top: -196px; font-size: 18px">Cycling</span>
+            <span class="nm" style="left: 69px; top: -20px; font-size: 18px">Hiking</span>
+            <div class="dot" style="left: -80px; top: -110px"></div><span class="nm" style="left: -80px; top: -132px; font-size: 13px">Bikepacking</span>
+            <div class="dot" style="left: -10px; top: -60px"></div><span class="nm" style="left: -10px; top: -82px; font-size: 13px">Commute</span>
+            <div class="dot" style="left: 69px; top: 80px"></div><span class="nm" style="left: 69px; top: 58px; font-size: 13px">Forest walks</span>
+            <div class="disc you" style="left: -128px; top: 150px; width: 9px; height: 9px"></div>
+            <div class="moment" style="left: -122px; top: 168px">“Cycled to work through the fog, city still quiet.”</div>
+          </div>
+          <span class="nm faint" style="left: 18px; top: 88px; font-size: 24px">Outdoors</span>
+        </div>
+
+        <nav class="tabs" aria-label="Try the app">
+          <div class="pill">
+            <button class="tab on" type="button" data-go="tonight" aria-current="page"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>Tonight</button>
+            <button class="tab" type="button" data-go="journal"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>Journal</button>
+          </div>
+          <button class="round" type="button" data-go="map"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg><span class="sr-only">Map</span></button>
+        </nav>
+      </div>
+    </div>
+
+    <p class="fine try-note">What you type here stays on this page. Nothing is saved or sent.</p>
+  </section>
+
   <div class="wrap features">
     <section class="feature">
       <div class="copy">
@@ -225,6 +307,100 @@
     <nav><a href="privacy.html">Privacy</a><a href="support.html">Support</a></nav>
   </footer>
 </div>
+
+<script>
+// The phone to try (shown on phones only). Plain values in memory; nothing is stored or sent.
+(() => {
+  const root = document.querySelector('.try');
+  if (!root) return;
+
+  const captions = {
+    tonight: ['Tonight', 'Tap the page and write one good thing from today. Press return to keep it.'],
+    tonightOne: ['Tonight', 'That’s a card. One is enough, and it saves itself. Now tap Journal.'],
+    tonightMore: ['Tonight', 'Write as many as you like. An empty day is fine too. Then tap Journal.'],
+    journalYours: ['Journal', 'There it is, with the evenings before it: one card a day. Now open the map.'],
+    journal: ['Journal', 'Every evening is kept here, one card a day, in the order you wrote it. Now open the map.'],
+    map: ['Map', 'You never tag anything. What you write about gathers around you, closer the more it matters. Tap Outdoors.'],
+    outdoors: ['Map', 'Look closer and it gets more detailed, down to the morning you wrote. All drawn on your iPhone.'],
+  };
+  // What to tap next, for each caption.
+  const next = { tonightOne: 'journal', tonightMore: 'journal', journalYours: 'map', journal: 'map', map: 'outdoors' };
+
+  const past = [
+    { ago: 1, lines: ['Coffee on the balcony with Anna', 'A long call with Mum'] },
+    { ago: 2, lines: ['Dinner with Peter and Anna', 'Swam in the fjord in the rain'] },
+    { ago: 4, lines: ['Miso asleep on my feet the whole film'] },
+  ];
+  const written = [];
+
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
+  const part = (d, o) => new Intl.DateTimeFormat('en-GB', o).format(d);
+  const today = new Date();
+  const daysAgo = n => new Date(today.getFullYear(), today.getMonth(), today.getDate() - n);
+  root.querySelector('[data-today]').textContent =
+    `${part(today, { weekday: 'long' })} ${today.getDate()} ${part(today, { month: 'long' })}`;
+
+  function renderTonight() {
+    const list = root.querySelector('[data-cards]');
+    list.replaceChildren(...written.slice().reverse().slice(0, 4).map(t => el('div', 'card', t)));
+  }
+
+  function renderJournal() {
+    const days = (written.length ? [{ ago: 0, lines: written }] : []).concat(past);
+    const box = root.querySelector('[data-days]');
+    box.replaceChildren();
+    let month = today.getMonth();
+    for (const day of days) {
+      const d = daysAgo(day.ago);
+      // The newest month has no heading; an older one gets one over its first day.
+      if (d.getMonth() !== month) {
+        month = d.getMonth();
+        box.append(el('span', 'month', `${part(d, { month: 'long' })} ${d.getFullYear()}`));
+      }
+      const card = el('div', 'card day');
+      const head = el('header');
+      head.append(el('b', '', String(d.getDate())), el('span', day.ago === 0 ? 'today' : '', part(d, { weekday: 'long' }).toUpperCase()));
+      card.append(head, ...day.lines.map(t => el('div', '', t)));
+      box.append(card);
+    }
+  }
+
+  function say(key) {
+    const [label, text] = captions[key];
+    root.querySelector('#try-label').textContent = label;
+    root.querySelector('#try-text').textContent = text;
+    root.querySelectorAll('.hint').forEach(e => e.classList.remove('hint'));
+    if (next[key]) root.querySelector(`[data-go="${next[key]}"]`).classList.add('hint');
+  }
+
+  function show(view) {
+    root.querySelectorAll('.view').forEach(v => { v.hidden = v.dataset.view !== view; });
+    const tab = view === 'outdoors' ? 'map' : view;
+    root.querySelectorAll('.tabs [data-go]').forEach(b => {
+      const on = b.dataset.go === tab;
+      b.classList.toggle('on', on);
+      on ? b.setAttribute('aria-current', 'page') : b.removeAttribute('aria-current');
+    });
+    if (view === 'tonight') say(written.length === 0 ? 'tonight' : written.length === 1 ? 'tonightOne' : 'tonightMore');
+    if (view === 'journal') { renderJournal(); say(written.length ? 'journalYours' : 'journal'); }
+    if (view === 'map' || view === 'outdoors') say(view);
+  }
+
+  root.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go)));
+
+  const input = root.querySelector('#try-input');
+  root.querySelector('.write').addEventListener('submit', e => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    written.push(text);
+    input.value = '';
+    input.blur();
+    renderTonight();
+    show('tonight');
+  });
+})();
+</script>
 
 </body>
 </html>
