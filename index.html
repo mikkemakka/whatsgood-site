@@ -16,6 +16,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/literata-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 
@@ -106,6 +107,92 @@
               <span class="tab"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>Journal</span>
             </div>
             <span class="round"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- On a phone: the app's story told by scrolling. The phone pins under the header and each swipe
+       moves it one step on; the caption above it follows. Shown only with JavaScript (see .js in <head>);
+       without it, the hero's phones show instead. -->
+  <section class="story" aria-labelledby="story-title">
+    <h2 class="sr-only" id="story-title">How What's Good works</h2>
+    <ol class="sr-only">
+      <li>Tonight. One question, one card is enough: write what was good and press return.</li>
+      <li>It saves by itself. Write one, or a few, or none at all.</li>
+      <li>Journal. Every evening is kept, one card a day, in the order you wrote it.</li>
+      <li>Map. The people and things you write about gather around you, closer the more they matter. You never tag anything.</li>
+      <li>Look closer, down to the morning you wrote about. It's all drawn on your iPhone.</li>
+    </ol>
+
+    <div class="story-pin" aria-hidden="true">
+      <div class="story-caption">
+        <span class="eyebrow" data-cap="label">Tonight</span>
+        <h2 data-cap="title">One question. One card is enough.</h2>
+        <p data-cap="text">Write what was good today, and press return.</p>
+      </div>
+
+      <div class="story-phone">
+        <div class="phone">
+          <div class="screen">
+            <div class="island"></div>
+            <div class="bar"><span class="serif">What's Good</span><span class="gear"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></span></div>
+
+            <div class="view" data-view="tonight">
+              <div class="body">
+                <span class="date" data-today></span>
+                <span class="question">What are you grateful for today?</span>
+                <div class="card field" data-field><span class="placeholder">Write it here…</span></div>
+                <div class="cards" data-cards></div>
+              </div>
+            </div>
+
+            <div class="view" data-view="journal">
+              <div class="body" style="gap: 12px">
+                <span class="title">Journal</span>
+                <div class="days" data-days></div>
+              </div>
+            </div>
+
+            <div class="view" data-view="map">
+              <div class="map" data-zoom style="left: 150px; top: 350px">
+                <div class="disc ring" style="left: -90px; top: -90px; width: 180px; height: 180px"></div>
+                <div class="disc ring" style="left: -150px; top: -150px; width: 300px; height: 300px"></div>
+                <div class="disc you" style="left: -11px; top: -11px; width: 22px; height: 22px"></div>
+                <span class="nm" style="left: 0; top: -30px; font: 600 11px var(--sans)">You</span>
+                <div class="cl" data-n="1"><div class="disc" style="left: -128px; top: -150px; width: 124px; height: 124px; background: var(--rose)"></div><div class="dot" style="left: -66px; top: -88px"></div><span class="nm" style="left: -66px; top: -172px; font-size: 14px">Family</span></div>
+                <div class="cl" data-n="2"><div class="disc" style="left: 6px; top: 44px; width: 118px; height: 118px; background: var(--sage)"></div><div class="dot" style="left: 65px; top: 103px"></div><span class="nm" style="left: 65px; top: 22px; font-size: 14px">Outdoors</span></div>
+                <div class="cl" data-n="3"><div class="disc" style="left: 26px; top: -140px; width: 84px; height: 84px; background: var(--butter)"></div><div class="dot" style="left: 68px; top: -98px"></div><span class="nm" style="left: 68px; top: -162px; font-size: 14px">Food</span></div>
+                <div class="cl" data-n="4"><div class="disc" style="left: -132px; top: 58px; width: 78px; height: 78px; background: var(--periwinkle)"></div><div class="dot" style="left: -93px; top: 97px"></div><span class="nm" style="left: -93px; top: 36px; font-size: 14px">Friends</span></div>
+                <div class="cl" data-n="5"><div class="disc" style="left: -30px; top: -236px; width: 54px; height: 54px; background: var(--lilac)"></div><div class="dot" style="left: -3px; top: -209px"></div><span class="nm" style="left: -3px; top: -256px; font-size: 12px">Music</span></div>
+                <div class="cl" data-n="6"><div class="disc" style="left: -44px; top: 180px; width: 58px; height: 58px; background: var(--sky)"></div><div class="dot" style="left: -15px; top: 209px"></div><span class="nm" style="left: -15px; top: 160px; font-size: 12px">Sport</span></div>
+              </div>
+            </div>
+
+            <div class="view" data-view="outdoors">
+              <div class="map" style="left: 150px; top: 330px">
+                <div class="disc" style="left: -230px; top: -230px; width: 460px; height: 460px; background: var(--sage); opacity: .55"></div>
+                <div class="disc" style="left: -128px; top: -170px; width: 170px; height: 170px; background: var(--sky); opacity: .9"></div>
+                <div class="disc" style="left: -6px; top: 6px; width: 150px; height: 150px; background: var(--butter); opacity: .85"></div>
+                <span class="nm" style="left: -43px; top: -196px; font-size: 18px">Cycling</span>
+                <span class="nm" style="left: 69px; top: -20px; font-size: 18px">Hiking</span>
+                <div class="dot" style="left: -80px; top: -110px"></div><span class="nm" style="left: -80px; top: -132px; font-size: 13px">Bikepacking</span>
+                <div class="dot" style="left: -10px; top: -60px"></div><span class="nm" style="left: -10px; top: -82px; font-size: 13px">Commute</span>
+                <div class="dot" style="left: 69px; top: 80px"></div><span class="nm" style="left: 69px; top: 58px; font-size: 13px">Forest walks</span>
+                <div class="disc you" style="left: -128px; top: 150px; width: 9px; height: 9px"></div>
+                <div class="moment" data-moment style="left: -122px; top: 170px">“Cycled to work through the fog, city still quiet.”</div>
+              </div>
+              <span class="nm faint" style="left: 18px; top: 96px; font-size: 24px">Outdoors</span>
+            </div>
+
+            <div class="tabs">
+              <div class="pill">
+                <span class="tab" data-tab="tonight"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>Tonight</span>
+                <span class="tab" data-tab="journal"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>Journal</span>
+              </div>
+              <span class="round" data-tab="map"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg></span>
+            </div>
           </div>
         </div>
       </div>
@@ -227,6 +314,130 @@
     <nav><a href="privacy.html">Privacy</a><a href="support.html">Support</a></nav>
   </footer>
 </div>
+
+<script>
+// The story on phones: the scroll position picks the step (five, one swipe each) and how far into it,
+// and the drawn phone and caption follow. Nothing is stored or sent.
+(() => {
+  const story = document.querySelector('.story');
+  if (!story) return;
+  const $ = (q, el = story) => el.querySelector(q);
+  const pin = $('.story-pin'), box = $('.story-phone'), phone = $('.story-phone .phone'), caption = $('.story-caption');
+  const mobile = matchMedia('(max-width: 600px)'), still = matchMedia('(prefers-reduced-motion: reduce)');
+
+  const steps = [
+    { view: 'tonight', label: 'Tonight', title: 'One question. One card is enough.', text: 'Write what was good today, and press return.' },
+    { view: 'tonight', label: 'Tonight', title: 'It saves by itself.', text: 'Write one, or a few, or none at all. An empty day is fine.' },
+    { view: 'journal', label: 'Journal', title: 'Every evening, kept.', text: 'Every good thing goes into your journal, one card a day.' },
+    { view: 'map', label: 'Map', title: 'Your life, drawn as it grows.', text: 'What you write about gathers around you. You never tag a thing.' },
+    { view: 'outdoors', label: 'Map', title: 'Look closer.', text: 'Down to the morning you wrote about, all drawn on your iPhone.' },
+  ];
+  const tonight = ['Pancakes with the kids before school', 'A long walk with Sutyi in the rain'];
+  const past = [
+    { ago: 1, lines: ['Coffee on the balcony with Anna', 'A long call with Mum'] },
+    { ago: 2, lines: ['Dinner with Peter and Anna', 'Swam in the fjord in the rain'] },
+    { ago: 4, lines: ['Miso asleep on my feet the whole film'] },
+  ];
+
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
+  const fmt = (d, o) => new Intl.DateTimeFormat('en-GB', o).format(d);
+  const now = new Date();
+  const ago = n => new Date(now.getFullYear(), now.getMonth(), now.getDate() - n);
+  $('[data-today]').textContent = `${fmt(now, { weekday: 'long' })} ${now.getDate()} ${fmt(now, { month: 'long' })}`;
+
+  // The Journal: today's two cards, then earlier days; the newest month has no heading.
+  const days = [{ ago: 0, lines: tonight }, ...past];
+  let month = now.getMonth();
+  for (const day of days) {
+    const d = ago(day.ago);
+    if (d.getMonth() !== month) { month = d.getMonth(); $('[data-days]').append(el('span', 'month', `${fmt(d, { month: 'long' })} ${d.getFullYear()}`)); }
+    const card = el('div', 'card day'), head = el('header');
+    head.append(el('b', '', String(d.getDate())), el('span', day.ago === 0 ? 'today' : '', fmt(d, { weekday: 'long' }).toUpperCase()));
+    card.append(head, ...day.lines.map(t => el('div', '', t)));
+    $('[data-days]').append(card);
+  }
+
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  let shown = { step: -1, typed: -1, cards: -1 };
+
+  function size() {
+    const header = document.querySelector('.site-header');
+    document.documentElement.style.setProperty('--header-h', `${header.offsetHeight}px`);
+    const avail = pin.clientHeight - caption.offsetHeight - 18 - 24;
+    const s = clamp(Math.min(avail / 692, (innerWidth - 48) / 320), .4, 1);
+    box.style.width = `${320 * s}px`; box.style.height = `${692 * s}px`;
+    phone.style.transform = `scale(${s})`;
+  }
+
+  function setCaption(i) {
+    const c = steps[i];
+    $('[data-cap="label"]').textContent = c.label;
+    $('[data-cap="title"]').textContent = c.title;
+    $('[data-cap="text"]').textContent = c.text;
+    if (!still.matches && caption.animate) caption.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 320, easing: 'ease-out' });
+  }
+
+  function setField(n) {
+    if (n === shown.typed) return;
+    shown.typed = n;
+    const field = $('[data-field]');
+    field.replaceChildren();
+    if (n <= 0) field.append(el('span', 'placeholder', 'Write it here…'));
+    else field.append(document.createTextNode(tonight[0].slice(0, n)), el('span', 'caret'));
+  }
+
+  function setCards(n) {
+    if (n === shown.cards) return;
+    shown.cards = n;
+    $('[data-cards]').replaceChildren(...tonight.slice(0, n).reverse().map(t => el('div', 'card', t)));
+  }
+
+  function render() {
+    if (!mobile.matches) return;
+    const r = story.getBoundingClientRect();
+    const top = parseFloat(getComputedStyle(pin).top) || 0;
+    const range = story.offsetHeight - pin.offsetHeight;
+    const scrolled = top - r.top;
+    caption.style.opacity = clamp(1 + scrolled / 220);
+
+    const p = clamp(scrolled / range) * steps.length;
+    const i = Math.min(steps.length - 1, Math.floor(p));
+    const t = clamp(p - i);
+    if (i !== shown.step) { shown.step = i; setCaption(i); }
+
+    const view = steps[i].view;
+    story.querySelectorAll('.view').forEach(v => v.classList.toggle('on', v.dataset.view === view || (view === 'outdoors' && v.dataset.view === 'map')));
+    const tab = view === 'outdoors' ? 'map' : view;
+    story.querySelectorAll('[data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+
+    // 1: the first good thing types itself. 2: return makes it a card, and a second follows.
+    if (i === 0) { setField(still.matches ? (t > .3 ? tonight[0].length : 0) : Math.round(clamp((t - .1) / .75) * tonight[0].length)); setCards(0); }
+    else { setField(0); setCards(i === 1 && t < .5 ? 1 : 2); }
+
+    // 4: the map's groups arrive one by one around You.
+    const groups = i < 3 ? 0 : i > 3 || still.matches ? 6 : 1 + Math.floor(t * 6.5);
+    story.querySelectorAll('.cl').forEach(g => g.classList.toggle('off', +g.dataset.n > groups));
+
+    // 5: zoom into Outdoors, and the written morning appears.
+    const zoom = i === 4 ? (still.matches ? (t > .3 ? 1 : 0) : clamp(t / .5)) : 0;
+    const map = $('[data-view="map"]'), out = $('[data-view="outdoors"]');
+    $('[data-zoom]').style.transform = still.matches ? 'none' : `scale(${1 + zoom * 1.8})`;
+    // The Outdoors view grows out of its circle while the overview fades, so it reads as one zoom.
+    const grow = clamp((zoom - .35) / .45);
+    if (i === 4) { map.style.opacity = 1 - clamp((zoom - .3) / .3); out.style.opacity = grow; }
+    else { map.style.opacity = ''; out.style.opacity = ''; }
+    out.style.transform = still.matches ? 'none' : `scale(${.45 + .55 * grow})`;
+    $('[data-moment]').style.opacity = i === 4 ? clamp((t - .55) / .25) : 0;
+  }
+
+  let queued = false;
+  const frame = () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; render(); }); } };
+  addEventListener('scroll', frame, { passive: true });
+  addEventListener('resize', () => { size(); frame(); });
+  mobile.addEventListener('change', () => { size(); frame(); });
+  size(); render();
+})();
+</script>
 
 </body>
 </html>
