@@ -368,6 +368,7 @@
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const ease = x => x * x * (3 - 2 * x);
   const shown = { step: -1, field: null, cards: -1 };
+  let lift = 0, approach = 1;
 
   function size() {
     document.documentElement.style.setProperty('--header-h', `${document.querySelector('.site-header').offsetHeight}px`);
@@ -375,6 +376,10 @@
     const s = clamp(Math.min(avail / 692, (innerWidth - 48) / 320), .4, 1);
     box.style.width = `${320 * s}px`; box.style.height = `${692 * s}px`;
     phone.style.transform = `scale(${s})`;
+    // At the top of the page the phone sits up in the caption's (still empty) space, close under the
+    // hero; it gives that space back as the page scrolls, moving slower than the text above it.
+    lift = Math.max(0, caption.offsetHeight + 18 - 40);
+    approach = Math.max(1, story.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(pin).top) || 0));
   }
 
   function setCaption(i) {
@@ -420,7 +425,9 @@
     if (!mobile.matches) return;
     const top = parseFloat(getComputedStyle(pin).top) || 0;
     const scrolled = top - story.getBoundingClientRect().top;
-    caption.style.opacity = clamp(1 + scrolled / 220);
+    const before = clamp(-scrolled / approach);
+    box.style.transform = `translateY(${-lift * before}px)`;
+    caption.style.opacity = clamp((.5 - before) / .5);
 
     let p = clamp(scrolled / (story.offsetHeight - pin.offsetHeight)) * total, i = 0;
     while (i < steps.length - 1 && p >= steps[i].weight) { p -= steps[i].weight; i++; }
