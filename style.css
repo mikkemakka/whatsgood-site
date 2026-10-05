@@ -218,6 +218,14 @@ h1, h2 { text-wrap: balance; }
 .story .scroller .body { top: 12px; }
 .story .days { display: flex; flex-direction: column; gap: 12px; }
 .story [data-moment] { transition: opacity .35s ease; }
+/* Outdoors, zoomed in: a soft sage wash for the whole screen (no cut-off circle), its title like the
+   Journal's, two groups well inside the screen, and the morning it leads to as a Journal card, its source
+   (Commute) marked with the accent. */
+.story .wash { position: absolute; inset: 0; background: var(--sage); opacity: 0; }
+.story .zoom-title { position: absolute; left: 18px; top: 92px; }
+.story .nm.sm { font-size: 12px; margin-top: 0; }
+.story .dot.on { width: 10px; height: 10px; margin: -5px 0 0 -5px; background: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 30%, transparent); }
+.story .moment-card { position: absolute; left: 18px; right: 18px; top: 474px; opacity: 0; }
 .story .field .placeholder { color: var(--muted); }
 .story .cards { display: flex; flex-direction: column; gap: 9px; }
 .story .cards .card { animation: card-in .35s ease both; }
