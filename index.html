@@ -19,34 +19,31 @@
 </head>
 <body>
 
-<div class="wrap">
-  <header class="site-header">
+<header class="site-header">
+  <div class="wrap">
     <a class="brand" href="./"><img src="assets/icon.png" alt=""><span>What's Good</span></a>
     <!-- TestFlight public link: replace every https://testflight.apple.com/join/XXXXXXXX on this page. -->
     <a class="btn btn-small" href="https://testflight.apple.com/join/XXXXXXXX">Join the beta</a>
-  </header>
-</div>
+  </div>
+</header>
 
 <main>
   <section class="wrap hero">
     <span class="chip">Now in beta on TestFlight</span>
     <h1>End each day on what was <span class="mark">good</span>.</h1>
     <p>One question before bed. Write a line or two. Over the weeks, What's Good draws a map of the people and things that make your life good.</p>
-    <div class="cta">
-      <a class="btn" href="https://testflight.apple.com/join/XXXXXXXX">Join the beta</a>
-      <span class="fine">Free · iPhone 15 Pro or newer · Apple Intelligence</span>
-    </div>
+    <span class="fine">Free · iPhone 15 Pro or newer · Apple Intelligence</span>
   </section>
 
-  <section class="wrap stage" aria-label="What's Good on iPhone: Tonight, the Journal and the map">
-    <div class="backdrop" aria-hidden="true">
+  <section class="stage" aria-label="What's Good on iPhone: Tonight, the Journal and the map">
+    <div class="sky" aria-hidden="true"><div class="backdrop">
       <div class="disc ring" style="left: -300px; top: -300px; width: 600px; height: 600px"></div>
       <div class="disc ring" style="left: -470px; top: -470px; width: 940px; height: 940px"></div>
       <div class="disc" style="left: -560px; top: -330px; width: 260px; height: 260px; background: var(--rose)"></div>
       <div class="disc" style="left: 320px; top: -260px; width: 220px; height: 220px; background: var(--butter)"></div>
       <div class="disc" style="left: 300px; top: 70px; width: 300px; height: 300px; background: var(--sage)"></div>
       <div class="disc" style="left: -540px; top: 90px; width: 190px; height: 190px; background: var(--periwinkle)"></div>
-    </div>
+    </div></div>
 
     <div class="side left" aria-hidden="true">
       <div class="phone"><div class="screen">
@@ -144,6 +141,29 @@
 
     <section class="feature flip">
       <div class="copy">
+        <span class="eyebrow">Journal</span>
+        <h2>Every evening, kept.</h2>
+        <p class="lede">At midnight the day moves into your journal: one card per day, in the order you wrote it. Something to read back on a hard one.</p>
+        <ul class="facts"><li>Tap a line to change it, swipe to delete</li><li>Deleted means gone for good</li><li>It starts with a letter you write on the first day</li></ul>
+      </div>
+      <div class="phone" role="img" aria-label="The Journal: the last days of September, one card per day">
+        <div class="screen" aria-hidden="true">
+          <div class="island"></div>
+          <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+          <div class="body" style="gap: 12px">
+            <span class="title">Journal</span>
+            <span class="month">September 2026</span>
+            <div class="card day"><header><b>30</b><span>WEDNESDAY</span></header><div>Emma read the bedtime story to me for once</div><div>The descent after the long climb</div></div>
+            <div class="card day"><header><b>29</b><span>TUESDAY</span></header><div class="quiet">A quiet day.</div></div>
+            <div class="card day"><header><b>28</b><span>MONDAY</span></header><div>Miso asleep on my feet the whole film</div></div>
+          </div>
+          <div class="tabs"><div class="pill"><span class="tab">Tonight</span><span class="tab on">Journal</span></div><span class="round"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div class="copy">
         <span class="eyebrow">Map</span>
         <h2>Your life, drawn as it grows.</h2>
         <p class="lede">Apple Intelligence reads your cards on your iPhone and gathers the people, places and small rituals you keep coming back to, with you in the middle. Closer means it matters more.</p>
@@ -167,29 +187,6 @@
           </div>
           <span class="nm faint" style="left: 18px; top: 96px; font-size: 24px">Outdoors</span>
           <div class="tabs"><div class="pill"><span class="tab">Tonight</span><span class="tab">Journal</span></div><span class="round on"></span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="feature">
-      <div class="copy">
-        <span class="eyebrow">Journal</span>
-        <h2>Every evening, kept.</h2>
-        <p class="lede">At midnight the day moves into your journal: one card per day, in the order you wrote it. Something to read back on a hard one.</p>
-        <ul class="facts"><li>Tap a line to change it, swipe to delete</li><li>Deleted means gone for good</li><li>It starts with a letter you write on the first day</li></ul>
-      </div>
-      <div class="phone" role="img" aria-label="The Journal: the last days of September, one card per day">
-        <div class="screen" aria-hidden="true">
-          <div class="island"></div>
-          <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
-          <div class="body" style="gap: 12px">
-            <span class="title">Journal</span>
-            <span class="month">September 2026</span>
-            <div class="card day"><header><b>30</b><span>WEDNESDAY</span></header><div>Emma read the bedtime story to me for once</div><div>The descent after the long climb</div></div>
-            <div class="card day"><header><b>29</b><span>TUESDAY</span></header><div class="quiet">A quiet day.</div></div>
-            <div class="card day"><header><b>28</b><span>MONDAY</span></header><div>Miso asleep on my feet the whole film</div></div>
-          </div>
-          <div class="tabs"><div class="pill"><span class="tab">Tonight</span><span class="tab on">Journal</span></div><span class="round"></span></div>
         </div>
       </div>
     </section>
