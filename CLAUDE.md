@@ -26,6 +26,7 @@ The site is served from **GitHub Pages** (`https://mikkemakka.github.io/whatsgoo
 - **Accessibility:** 44 pt targets, visible focus, alt text or `role="img"` labels on the drawn phones, no horizontal scroll at 390 px.
 - **Join the beta** goes to the TestFlight public link, `https://testflight.apple.com/join/zZkecsFE`, on every page.
 - **The App Store badge** only once the app is live (Apple's badge rules).
+- **Stylesheet version:** every page links `style.css?v=…`. Bump the number on all three pages whenever `style.css` changes, so a cached old page and a new stylesheet (or the reverse) never meet after a deploy.
 
 ## How we work
 - One issue → one branch → one PR; Miklos reviews and merges. Never commit to `main` directly.
