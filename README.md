@@ -9,7 +9,7 @@ python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
-Live at https://mikkemakka.github.io/whatsgood-site/ (GitHub Pages) and on Vercel, both from `main`; Vercel gives every pull request a preview link. `privacy.html` and `support.html` are linked from App Store Connect and the app: never rename them.
+Live at https://mikkemakka.github.io/whatsgood-site/ (GitHub Pages) and https://whatsgoodapp.vercel.app/ (Vercel), both from `main`; Vercel gives every pull request a preview link. `privacy.html` and `support.html` are linked from App Store Connect and the app: never rename them.
 
 ## Before launch
 - Replace `https://testflight.apple.com/join/XXXXXXXX` with the TestFlight public link (App Store Connect › TestFlight › the external group › Public Link).
