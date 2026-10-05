@@ -1,7 +1,233 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Literata:opsz@7..72&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><title>What's Good</title></head><body><main><nav><a href="./">What's Good</a><a href="privacy.html">Privacy</a><a href="support.html">Support</a></nav>
-<h1>Hello! What's <mark>good</mark>?</h1>
-<p class="meta">An evening gratitude journal for iPhone. In beta.</p>
-<p>Take a few quiet moments at the end of each day to reflect on what you're grateful for. Over time, What's Good draws a map of the good things in your life, right on your iPhone.</p>
-<p>Everything you write stays on your iPhone.</p>
-<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support</a></p>
-</main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What's Good · An evening gratitude journal for iPhone</title>
+<meta name="description" content="One question before bed. Write a line or two. Over the weeks, What's Good draws a map of the people and things that make your life good. Now in beta on TestFlight.">
+<meta name="theme-color" content="#EDEFF3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171B26" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="What's Good">
+<meta property="og:description" content="End each day on what was good. An evening gratitude journal for iPhone, now in beta.">
+<meta property="og:image" content="https://mikkemakka.github.io/whatsgood-site/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/literata-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header class="site-header">
+    <a class="brand" href="./"><img src="assets/icon.png" alt=""><span>What's Good</span></a>
+    <!-- TestFlight public link: replace every https://testflight.apple.com/join/XXXXXXXX on this page. -->
+    <a class="btn btn-small" href="https://testflight.apple.com/join/XXXXXXXX">Join the beta</a>
+  </header>
+</div>
+
+<main>
+  <section class="wrap hero">
+    <span class="chip">Now in beta on TestFlight</span>
+    <h1>End each day on what was <span class="mark">good</span>.</h1>
+    <p>One question before bed. Write a line or two. Over the weeks, What's Good draws a map of the people and things that make your life good.</p>
+    <div class="cta">
+      <a class="btn" href="https://testflight.apple.com/join/XXXXXXXX">Join the beta</a>
+      <span class="fine">Free · iPhone 15 Pro or newer · Apple Intelligence</span>
+    </div>
+  </section>
+
+  <section class="wrap stage" aria-label="What's Good on iPhone: Tonight, the Journal and the map">
+    <div class="backdrop" aria-hidden="true">
+      <div class="disc ring" style="left: -300px; top: -300px; width: 600px; height: 600px"></div>
+      <div class="disc ring" style="left: -470px; top: -470px; width: 940px; height: 940px"></div>
+      <div class="disc" style="left: -560px; top: -330px; width: 260px; height: 260px; background: var(--rose)"></div>
+      <div class="disc" style="left: 320px; top: -260px; width: 220px; height: 220px; background: var(--butter)"></div>
+      <div class="disc" style="left: 300px; top: 70px; width: 300px; height: 300px; background: var(--sage)"></div>
+      <div class="disc" style="left: -540px; top: 90px; width: 190px; height: 190px; background: var(--periwinkle)"></div>
+    </div>
+
+    <div class="side left" aria-hidden="true">
+      <div class="phone"><div class="screen">
+        <div class="island"></div>
+        <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+        <div class="body" style="gap: 12px">
+          <span class="title">Journal</span>
+          <span class="month">October 2026</span>
+          <div class="card day"><header><b>2</b><span class="today">FRIDAY</span></header><div>Coffee on the balcony with Anna</div><div>A long call with Mum</div></div>
+          <div class="card day"><header><b>1</b><span>THURSDAY</span></header><div>Dinner with Peter and Anna</div><div>Swam in the fjord in the rain</div></div>
+        </div>
+        <div class="tabs"><div class="pill"><span class="tab">Tonight</span><span class="tab on">Journal</span></div><span class="round"></span></div>
+      </div></div>
+    </div>
+
+    <div class="side right" aria-hidden="true">
+      <div class="phone"><div class="screen">
+        <div class="island"></div>
+        <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+        <div class="map" style="left: 150px; top: 350px">
+          <div class="disc ring" style="left: -90px; top: -90px; width: 180px; height: 180px"></div>
+          <div class="disc ring" style="left: -150px; top: -150px; width: 300px; height: 300px"></div>
+          <div class="disc" style="left: -128px; top: -150px; width: 124px; height: 124px; background: var(--rose)"></div><div class="dot" style="left: -66px; top: -88px"></div>
+          <div class="disc" style="left: 26px; top: -140px; width: 84px; height: 84px; background: var(--butter)"></div><div class="dot" style="left: 68px; top: -98px"></div>
+          <div class="disc" style="left: 6px; top: 44px; width: 118px; height: 118px; background: var(--sage)"></div><div class="dot" style="left: 65px; top: 103px"></div>
+          <div class="disc" style="left: -132px; top: 58px; width: 78px; height: 78px; background: var(--periwinkle)"></div><div class="dot" style="left: -93px; top: 97px"></div>
+          <div class="disc" style="left: -30px; top: -236px; width: 54px; height: 54px; background: var(--lilac)"></div><div class="dot" style="left: -3px; top: -209px"></div>
+          <div class="disc" style="left: -44px; top: 180px; width: 58px; height: 58px; background: var(--sky)"></div><div class="dot" style="left: -15px; top: 209px"></div>
+          <div class="disc you" style="left: -11px; top: -11px; width: 22px; height: 22px"></div>
+          <span class="nm" style="left: -66px; top: -172px; font-size: 14px">Family</span>
+          <span class="nm" style="left: 68px; top: -162px; font-size: 14px">Food</span>
+          <span class="nm" style="left: 65px; top: 22px; font-size: 14px">Outdoors</span>
+          <span class="nm" style="left: -93px; top: 36px; font-size: 14px">Friends</span>
+          <span class="nm" style="left: -3px; top: -256px; font-size: 12px">Music</span>
+          <span class="nm" style="left: -15px; top: 160px; font-size: 12px">Sport</span>
+          <span class="nm" style="left: 0; top: -30px; font: 600 11px var(--sans)">You</span>
+        </div>
+        <div class="tabs"><div class="pill"><span class="tab">Tonight</span><span class="tab">Journal</span></div><span class="round on"></span></div>
+      </div></div>
+    </div>
+
+    <div class="front">
+      <div class="phone" role="img" aria-label="Tonight: the question “What are you grateful for today?” with three good things written below it">
+        <div class="screen" aria-hidden="true">
+          <div class="island"></div>
+          <div class="bar"><span class="serif">What's Good</span><span class="gear"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></span></div>
+          <div class="body">
+            <span class="date">Friday 2 October</span>
+            <span class="question">What are you grateful for today?</span>
+            <div class="card" style="min-height: 56px">The first frost on the car, and Lena scraping it in her pyjamas<span class="caret"></span></div>
+            <div class="card">Walked Sutyi in the park, the leaves are turning</div>
+            <div class="card">A long call with Mum</div>
+            <div class="card">Coffee on the balcony before anyone was up</div>
+          </div>
+          <div class="tabs">
+            <div class="pill">
+              <span class="tab on"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>Tonight</span>
+              <span class="tab"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>Journal</span>
+            </div>
+            <span class="round"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap features">
+    <section class="feature">
+      <div class="copy">
+        <span class="eyebrow">Tonight</span>
+        <h2>One question. One card is enough.</h2>
+        <p class="lede">Write what was good, press return, and it becomes a card, like a note on the fridge. An empty day is fine. The reflection is the point.</p>
+        <ul class="facts"><li>Return makes a card, and it saves by itself</li><li>No forms, no tags, no word count</li><li>A gentle reminder before bed, if you want one</li></ul>
+      </div>
+      <div class="phone" role="img" aria-label="Tonight with two good things and the offer of an evening reminder">
+        <div class="screen" aria-hidden="true">
+          <div class="island"></div>
+          <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+          <div class="body">
+            <span class="date">Thursday 1 October</span>
+            <span class="question">What are you grateful for today?</span>
+            <div class="card placeholder">Write it here…</div>
+            <div class="card">Swam in the fjord in the rain</div>
+            <div class="card">Dinner with Peter and Anna</div>
+            <div class="nudge">
+              <span class="serif">How about a reminder in the evenings?</span>
+              <small>A gentle reminder comes 30 minutes before bed, and never on evenings you've already written.</small>
+              <span><i>Remind me</i><em>Not now</em></span>
+            </div>
+          </div>
+          <div class="tabs"><div class="pill"><span class="tab on">Tonight</span><span class="tab">Journal</span></div><span class="round"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature flip">
+      <div class="copy">
+        <span class="eyebrow">Map</span>
+        <h2>Your life, drawn as it grows.</h2>
+        <p class="lede">Apple Intelligence reads your cards on your iPhone and gathers the people, places and small rituals you keep coming back to, with you in the middle. Closer means it matters more.</p>
+        <ul class="facts"><li>You never tag or sort anything</li><li>Pinch into Outdoors, then Cycling, then the morning you wrote about</li><li>Drawn on your phone; nothing is sent anywhere</li></ul>
+      </div>
+      <div class="phone" role="img" aria-label="The map zoomed into Outdoors: Cycling and Hiking, and a moment someone wrote">
+        <div class="screen" aria-hidden="true">
+          <div class="island"></div>
+          <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+          <div class="map" style="left: 150px; top: 330px">
+            <div class="disc" style="left: -230px; top: -230px; width: 460px; height: 460px; background: var(--sage); opacity: .55"></div>
+            <div class="disc" style="left: -128px; top: -170px; width: 170px; height: 170px; background: var(--sky); opacity: .9"></div>
+            <div class="disc" style="left: -6px; top: 6px; width: 150px; height: 150px; background: var(--butter); opacity: .85"></div>
+            <span class="nm" style="left: -43px; top: -196px; font-size: 18px">Cycling</span>
+            <span class="nm" style="left: 69px; top: -20px; font-size: 18px">Hiking</span>
+            <div class="dot" style="left: -80px; top: -110px"></div><span class="nm" style="left: -80px; top: -132px; font-size: 13px">Bikepacking</span>
+            <div class="dot" style="left: -10px; top: -60px"></div><span class="nm" style="left: -10px; top: -82px; font-size: 13px">Commute</span>
+            <div class="dot" style="left: 69px; top: 80px"></div><span class="nm" style="left: 69px; top: 58px; font-size: 13px">Forest walks</span>
+            <div class="disc you" style="left: -128px; top: 150px; width: 9px; height: 9px"></div>
+            <div class="moment" style="left: -122px; top: 170px">“Cycled to work through the fog, city still quiet.”</div>
+          </div>
+          <span class="nm faint" style="left: 18px; top: 96px; font-size: 24px">Outdoors</span>
+          <div class="tabs"><div class="pill"><span class="tab">Tonight</span><span class="tab">Journal</span></div><span class="round on"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div class="copy">
+        <span class="eyebrow">Journal</span>
+        <h2>Every evening, kept.</h2>
+        <p class="lede">At midnight the day moves into your journal: one card per day, in the order you wrote it. Something to read back on a hard one.</p>
+        <ul class="facts"><li>Tap a line to change it, swipe to delete</li><li>Deleted means gone for good</li><li>It starts with a letter you write on the first day</li></ul>
+      </div>
+      <div class="phone" role="img" aria-label="The Journal: the last days of September, one card per day">
+        <div class="screen" aria-hidden="true">
+          <div class="island"></div>
+          <div class="bar"><span class="serif">What's Good</span><span class="gear"></span></div>
+          <div class="body" style="gap: 12px">
+            <span class="title">Journal</span>
+            <span class="month">September 2026</span>
+            <div class="card day"><header><b>30</b><span>WEDNESDAY</span></header><div>Emma read the bedtime story to me for once</div><div>The descent after the long climb</div></div>
+            <div class="card day"><header><b>29</b><span>TUESDAY</span></header><div class="quiet">A quiet day.</div></div>
+            <div class="card day"><header><b>28</b><span>MONDAY</span></header><div>Miso asleep on my feet the whole film</div></div>
+          </div>
+          <div class="tabs"><div class="pill"><span class="tab">Tonight</span><span class="tab on">Journal</span></div><span class="round"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="values" aria-label="What's Good, in short">
+      <div class="value">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.6" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <h3>Nothing leaves your iPhone</h3>
+        <p>No account, no server, no ads. What you write, and the map made from it, stay on your phone.</p>
+      </div>
+      <div class="value">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M8 12h8"/></svg>
+        <h3>No streaks, no scores</h3>
+        <p>Skip a week and nothing scolds you. Come back when you like; the page is waiting.</p>
+      </div>
+      <div class="value">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.6" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h3"/></svg>
+        <h3>It starts with a letter</h3>
+        <p>The first time, you write about your life. Your map isn't empty on day one.</p>
+      </div>
+    </section>
+
+    <section class="closing" id="join">
+      <img src="assets/icon.png" alt="The What's Good app icon">
+      <h2>Start tonight.</h2>
+      <p class="lede">What's Good is in beta on TestFlight. It's free while it's in beta.</p>
+      <a class="btn" href="https://testflight.apple.com/join/XXXXXXXX">Join the beta</a>
+      <p class="fine">Needs an iPhone 15 Pro or newer with Apple Intelligence on, and writing in English. Gratitude journaling is a good habit, not a treatment.</p>
+    </section>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer class="site-footer">
+    <span><span class="serif" style="color: var(--ink)">What's Good</span> · Made in Oslo</span>
+    <nav><a href="privacy.html">Privacy</a><a href="support.html">Support</a></nav>
+  </footer>
+</div>
+
+</body>
+</html>
