@@ -333,7 +333,7 @@
 
   const steps = [
     { view: 'tonight', weight: 2, title: 'One question every night.', text: 'Write what was good today. One card is enough.' },
-    { view: 'journal', weight: 1.2, title: 'Every evening, kept.', text: 'Every good thing goes into your journal, one card a day.' },
+    { view: 'journal', weight: 2.4, title: 'Every evening, kept.', text: 'Every good thing goes into your journal, one card a day.' },
     { view: 'map', weight: 1, title: 'Your life, drawn as it grows.', text: 'What you write about gathers around you. You never tag a thing.' },
     { view: 'outdoors', weight: 1.3, title: 'Look closer.', text: 'Down to the morning you wrote about, all drawn on your iPhone.' },
   ];
@@ -466,12 +466,12 @@
       setCards(t < .4 ? 0 : t < .84 ? 1 : 2);
     } else { setField(''); setCards(2); }
 
-    // The Journal's page holds still for the first quarter of its step, while its words come in, then
+    // The Journal's page holds still at the start of its step (a fixed stretch), while its words come in, then
     // scrolls at a quarter of the speed of the page around it (measured on screen, so the phone's own scale doesn't
     // change it), up to its last day.
     const scroller = $('[data-scroller]'), page = $('[data-journal]');
     const far = Math.max(0, page.offsetHeight + 90 - scroller.clientHeight);
-    const hold = steps[1].weight * unit * .25;
+    const hold = unit * .3;
     const read = Math.max(0, (i === 1 ? p * unit : i > 1 ? steps[1].weight * unit : 0) - hold);
     page.style.transform = `translateY(${-Math.min(far, read * .25 / scale)}px)`;
 
