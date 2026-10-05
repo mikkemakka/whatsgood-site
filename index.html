@@ -382,12 +382,14 @@
     approach = Math.max(1, story.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(pin).top) || 0));
   }
 
-  function setCaption(i) {
+  function setCaption(i, first) {
     const c = steps[i];
     $('[data-cap="label"]').textContent = c.label;
     $('[data-cap="title"]').textContent = c.title;
     $('[data-cap="text"]').textContent = c.text;
-    if (!still.matches && caption.animate) caption.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 320, easing: 'ease-out' });
+    // A new caption rises in; its words animate, not the caption, whose opacity follows the scroll.
+    if (first || still.matches) return;
+    for (const e of caption.children) e.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'ease-out' });
   }
 
   function setField(text) {
@@ -427,12 +429,12 @@
     const scrolled = top - story.getBoundingClientRect().top;
     const before = clamp(-scrolled / approach);
     box.style.transform = `translateY(${-lift * before}px)`;
-    caption.style.opacity = clamp((.5 - before) / .5);
+    caption.style.opacity = ease(clamp((.75 - before) / .75));
 
     let p = clamp(scrolled / (story.offsetHeight - pin.offsetHeight)) * total, i = 0;
     while (i < steps.length - 1 && p >= steps[i].weight) { p -= steps[i].weight; i++; }
     const t = clamp(p / steps[i].weight);
-    if (i !== shown.step) { shown.step = i; setCaption(i); }
+    if (i !== shown.step) { setCaption(i, shown.step < 0); shown.step = i; }
 
     const view = steps[i].view;
     story.querySelectorAll('.view').forEach(v => v.classList.toggle('on', v.dataset.view === view || (view === 'outdoors' && v.dataset.view === 'map')));
