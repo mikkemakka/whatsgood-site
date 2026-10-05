@@ -370,7 +370,7 @@
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const ease = x => x * x * (3 - 2 * x);
   const shown = { step: -1, field: null, cards: -1 };
-  let lift = 0, glide = 0, approach = 1;
+  let lift = 0, glide = 0, approach = 1, scale = 1;
 
   function size() {
     document.documentElement.style.setProperty('--header-h', `${document.querySelector('.site-header').offsetHeight}px`);
@@ -379,6 +379,7 @@
     const s = clamp(Math.min(avail / 692, narrow ? (innerWidth - 48) / 320 : 1), .4, 1);
     box.style.width = `${320 * s}px`; box.style.height = `${692 * s}px`;
     phone.style.transform = `scale(${s})`;
+    scale = s;
     // At the top of the page the phone sits close under the hero: on a phone up in the caption's (still
     // empty) space, wider in the middle of the window. It moves to its place as the page scrolls, slower
     // than the text above it, and the words fade in.
@@ -466,11 +467,12 @@
       setCards(t < .4 ? 0 : t < .84 ? 1 : 2);
     } else { setField(''); setCards(2); }
 
-    // The Journal's page scrolls as you do: wider, it starts slowly and picks up speed, like reading back.
+    // The Journal's page scrolls at half the speed of the page around it (measured on screen, so the
+    // phone's own scale doesn't change it), up to its last day.
     const scroller = $('[data-scroller]'), page = $('[data-journal]');
     const far = Math.max(0, page.offsetHeight + 90 - scroller.clientHeight);
-    const read = clamp((t - .08) / .84);
-    page.style.transform = `translateY(${-(i === 1 ? (mobile.matches ? ease(read) : Math.pow(read, 2.4)) : i > 1 ? 1 : 0) * far}px)`;
+    const read = i === 1 ? p * unit : i > 1 ? steps[1].weight * unit : 0;
+    page.style.transform = `translateY(${-Math.min(far, read * .5 / scale)}px)`;
 
     // The map's groups arrive one by one around You.
     const groups = i < 2 ? 0 : i > 2 || still.matches ? 6 : 1 + Math.floor(clamp(t / .85) * 5.99);
