@@ -24,7 +24,7 @@ The site is served from **GitHub Pages** (`https://mikkemakka.github.io/whatsgoo
 - **Privacy is part of the product:** no analytics, no cookies, no third-party requests (fonts, scripts, embeds). If that ever changes, the privacy page changes in the same PR.
 - **The privacy page** says the same as `whatsgood/WhatsGood/Features/Settings/PrivacyView.swift` (plus a section on the website itself); change both together, with the date. Miklos approves every wording change to privacy and support.
 - **Accessibility:** 44 pt targets, visible focus, alt text or `role="img"` labels on the drawn phones, no horizontal scroll at 390 px.
-- **Placeholder to replace:** `https://testflight.apple.com/join/XXXXXXXX` (every Join the beta button, on every page).
+- **Join the beta** goes to the TestFlight public link, `https://testflight.apple.com/join/zZkecsFE`, on every page.
 - **The App Store badge** only once the app is live (Apple's badge rules).
 
 ## How we work
