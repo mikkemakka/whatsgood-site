@@ -32,6 +32,7 @@
   --on-accent: #2A2310;
   --link: #86660A;
   --soft-yellow: #F5EAC4;
+  --highlighter: rgba(255, 210, 40, .5);
   --ring: #CCD1DB;
   --today: #D93A3F;
   --live: #34C759;
@@ -63,6 +64,7 @@
     --on-accent: #231D0A;
     --link: #F2CC5B;
     --soft-yellow: #3A3320;
+    --highlighter: rgba(246, 210, 86, .4);
     --ring: #343B4F;
     --today: #FF6961;
     --live: #30D158;
@@ -90,8 +92,16 @@ a { color: var(--link); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
 h1, h2, h3, .serif { font-family: var(--serif); font-weight: 400; }
 h1, h2 { text-wrap: balance; }
-/* The highlight behind a word: as tall as the word, never over the line above. */
-.mark { display: inline-block; line-height: .95; padding: .04em .1em .1em; border-radius: 4px; background: var(--soft-yellow); }
+/* The highlight behind a word, drawn like a highlighter pen: a translucent stroke with chisel-cut ends and
+   a little more ink where it overlapped, slightly askew, behind the letters. It reaches past the word
+   without pushing the text around it. */
+.mark { position: relative; display: inline-block; isolation: isolate; }
+.mark::before {
+  content: ""; position: absolute; z-index: -1; left: -.14em; right: -.1em; top: .2em; bottom: .02em;
+  background: var(--highlighter); transform: rotate(-1.2deg);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%2040'%20preserveAspectRatio='none'%3E%3Cpath%20d='M13%206.5C60%204%20130%206%20197.5%203.5L195.5%2012L196%2021L192.5%2034.5C130%2036%2062%2034%203.5%2036.5L5.5%2028L5%2019Z'%20fill-opacity='.8'/%3E%3Cpath%20d='M12.5%207C60%204.5%20130%206.5%20197%204L196%209.5C130%2011.5%2060%2010%2011%2012.5Z'%20fill-opacity='.3'/%3E%3Cpath%20d='M5%2030.5C62%2032%20130%2031%20193.5%2030.5L192.5%2034.5C130%2036%2062%2034%203.5%2036.5Z'%20fill-opacity='.3'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%2040'%20preserveAspectRatio='none'%3E%3Cpath%20d='M13%206.5C60%204%20130%206%20197.5%203.5L195.5%2012L196%2021L192.5%2034.5C130%2036%2062%2034%203.5%2036.5L5.5%2028L5%2019Z'%20fill-opacity='.8'/%3E%3Cpath%20d='M12.5%207C60%204.5%20130%206.5%20197%204L196%209.5C130%2011.5%2060%2010%2011%2012.5Z'%20fill-opacity='.3'/%3E%3Cpath%20d='M5%2030.5C62%2032%20130%2031%20193.5%2030.5L192.5%2034.5C130%2036%2062%2034%203.5%2036.5Z'%20fill-opacity='.3'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
 .wrap { max-width: 1200px; margin: 0 auto; padding-inline: 24px; }
 .eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .lede { margin: 0; font-size: 19px; line-height: 1.6; color: var(--muted); }
@@ -194,9 +204,9 @@ h1, h2 { text-wrap: balance; }
   .js .story { display: block; position: relative; height: calc(100svh + 5.5 * 80svh); margin-top: 8px; }
   .story-pin {
     position: sticky; top: var(--header-h, 68px); height: calc(100svh - var(--header-h, 68px));
-    display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 8px 24px 16px; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 8px 24px 16px;
   }
-  .story-caption { width: 100%; max-width: 340px; height: 142px; flex: none; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; text-align: center; }
+  .story-caption { opacity: 0; width: 100%; max-width: 340px; height: 142px; flex: none; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; text-align: center; }
   .story-caption h2 { margin: 0; font-size: 26px; line-height: 1.15; letter-spacing: -.01em; text-wrap: balance; }
   .story-caption p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--muted); text-wrap: balance; }
   .story-phone { position: relative; flex: none; }
