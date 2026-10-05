@@ -191,7 +191,7 @@ h1, h2 { text-wrap: balance; }
   .js .stage, .js .features .feature { display: none; }
   .js .features { gap: 0; padding-top: 0; }
 
-  .js .story { display: block; position: relative; height: calc(100svh + 5 * 85svh); margin-top: 8px; }
+  .js .story { display: block; position: relative; height: calc(100svh + 5.5 * 80svh); margin-top: 8px; }
   .story-pin {
     position: sticky; top: var(--header-h, 68px); height: calc(100svh - var(--header-h, 68px));
     display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 8px 24px 16px; overflow: hidden;
@@ -206,8 +206,11 @@ h1, h2 { text-wrap: balance; }
   .story .view.on { opacity: 1; }
   .story .cl { transition: opacity .4s ease, transform .4s ease; }
   .story .cl.off { opacity: 0; transform: scale(.6); }
-  .story [data-zoom] { transform-origin: 65px 103px; }
-  .story [data-view="outdoors"] { transform-origin: 215px 453px; }
+  .story .zoomed { position: absolute; inset: 0; transform-origin: 0 0; }
+  .story [data-view="map"], .story [data-view="outdoors"] { -webkit-mask-image: linear-gradient(to bottom, transparent 62px, #000 90px); mask-image: linear-gradient(to bottom, transparent 62px, #000 90px); }
+  /* The Journal's page scrolls under the top bar, fading out at its edge. */
+  .story .scroller { position: absolute; top: 84px; left: 0; right: 0; bottom: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18px); mask-image: linear-gradient(to bottom, transparent, #000 18px); }
+  .story .scroller .body { top: 12px; }
   .story .days { display: flex; flex-direction: column; gap: 12px; }
   .story [data-moment] { transition: opacity .35s ease; }
   .story .field .placeholder { color: var(--muted); }
@@ -220,8 +223,8 @@ h1, h2 { text-wrap: balance; }
     .story .cards .card { animation: none; }
   }
 
-  .values { display: block; border-top: 1px solid var(--line); margin-block: 24px 72px; }
-  .value { display: grid; grid-template-columns: 24px 1fr; gap: 6px 16px; padding: 24px 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; }
+  .values { display: flex; flex-direction: column; gap: 32px; padding: 0 8px 0 20px; margin-block: 40px 88px; }
+  .value { display: grid; grid-template-columns: 24px 1fr; gap: 6px 18px; padding: 0; border: 0; border-radius: 0; background: none; }
   .value svg { grid-row: span 2; width: 24px; height: 24px; margin-top: 2px; }
   .value h3 { font-size: 20px; }
   .closing { gap: 20px; padding-bottom: 56px; }
@@ -234,8 +237,6 @@ h1, h2 { text-wrap: balance; }
 .island { position: absolute; top: 11px; left: 50%; width: 88px; height: 26px; margin-left: -44px; border-radius: 14px; background: var(--island); }
 .bar { position: absolute; top: 52px; left: 18px; right: 18px; display: flex; align-items: center; justify-content: space-between; }
 .bar .serif { font-size: 15px; }
-.gear { width: 32px; height: 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; }
-.gear svg { stroke: var(--ink); }
 .body { position: absolute; top: 100px; left: 18px; right: 18px; display: flex; flex-direction: column; gap: 9px; }
 .date { font-size: 11px; color: var(--muted); }
 .question { font-family: var(--serif); font-size: 21px; line-height: 1.25; margin-bottom: 8px; }
