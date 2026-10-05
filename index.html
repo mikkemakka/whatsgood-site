@@ -127,7 +127,6 @@
 
     <div class="story-pin" aria-hidden="true">
       <div class="story-caption">
-        <span class="eyebrow" data-cap="label">Tonight</span>
         <h2 data-cap="title">One question every night.</h2>
         <p data-cap="text">Write what was good today. One card is enough.</p>
       </div>
@@ -331,10 +330,10 @@
   const mobile = matchMedia('(max-width: 600px)'), still = matchMedia('(prefers-reduced-motion: reduce)');
 
   const steps = [
-    { view: 'tonight', weight: 2, label: 'Tonight', title: 'One question every night.', text: 'Write what was good today. One card is enough.' },
-    { view: 'journal', weight: 1.2, label: 'Journal', title: 'Every evening, kept.', text: 'Every good thing goes into your journal, one card a day.' },
-    { view: 'map', weight: 1, label: 'Map', title: 'Your life, drawn as it grows.', text: 'What you write about gathers around you. You never tag a thing.' },
-    { view: 'outdoors', weight: 1.3, label: 'Map', title: 'Look closer.', text: 'Down to the morning you wrote about, all drawn on your iPhone.' },
+    { view: 'tonight', weight: 2, title: 'One question every night.', text: 'Write what was good today. One card is enough.' },
+    { view: 'journal', weight: 1.2, title: 'Every evening, kept.', text: 'Every good thing goes into your journal, one card a day.' },
+    { view: 'map', weight: 1, title: 'Your life, drawn as it grows.', text: 'What you write about gathers around you. You never tag a thing.' },
+    { view: 'outdoors', weight: 1.3, title: 'Look closer.', text: 'Down to the morning you wrote about, all drawn on your iPhone.' },
   ];
   const total = steps.reduce((n, s) => n + s.weight, 0);
   const tonight = ['Pancakes with the kids before school', 'A long walk with Sutyi in the rain'];
@@ -372,19 +371,18 @@
 
   function size() {
     document.documentElement.style.setProperty('--header-h', `${document.querySelector('.site-header').offsetHeight}px`);
-    const avail = pin.clientHeight - caption.offsetHeight - 18 - 24;
+    const avail = pin.clientHeight - caption.offsetHeight - 12 - 24;
     const s = clamp(Math.min(avail / 692, (innerWidth - 48) / 320), .4, 1);
     box.style.width = `${320 * s}px`; box.style.height = `${692 * s}px`;
     phone.style.transform = `scale(${s})`;
     // At the top of the page the phone sits up in the caption's (still empty) space, close under the
     // hero; it gives that space back as the page scrolls, moving slower than the text above it.
-    lift = Math.max(0, caption.offsetHeight + 18 - 40);
+    lift = Math.max(0, caption.offsetHeight + 12 - 40);
     approach = Math.max(1, story.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(pin).top) || 0));
   }
 
   function setCaption(i, first) {
     const c = steps[i];
-    $('[data-cap="label"]').textContent = c.label;
     $('[data-cap="title"]').textContent = c.title;
     $('[data-cap="text"]').textContent = c.text;
     // A new caption rises in; its words animate, not the caption, whose opacity follows the scroll.
